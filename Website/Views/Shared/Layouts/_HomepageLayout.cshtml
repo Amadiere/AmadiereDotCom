@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "_BaseLayout";
+}
+<div id="homepage">
+    @RenderBody()
+</div>
+
+@section BottomOfHead
+{
+    @RenderSection("BottomOfHead", required: false)
+}
+
+@section Scripts
+{
+    @RenderSection("Scripts", required: false)
+}
