@@ -1,5 +1,6 @@
 ﻿/* Global style replacements */
 @import "partials/_boxes";
+@import "partials/_buttons";
 
 @import "modules/_my-name-is.scss";
 @import "modules/_homepage.scss";
@@ -21,11 +22,4 @@ html, body {
 header {
     text-align: center;
     padding: 1em 0;
-}
-
-footer {
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    width: 100%;
 }

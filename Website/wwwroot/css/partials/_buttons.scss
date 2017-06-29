@@ -1,0 +1,38 @@
+﻿.button {
+    @include rounded(5px);
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    margin: 0;
+    font-size: 1.2em;
+}
+
+em.button-image-base {
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+
+@mixin call-to-action($bgColor, $fontColor, $svgImage) {
+    @extend .button;
+    background-color: $bgColor;
+    color: $fontColor;
+
+    &:hover {
+        background-color: $fontColor;
+        color: $bgColor;
+
+        > .button-image {
+            $icon-color: $bgColor;
+            background-image: url($svgImage);
+        }
+    }
+
+    em.button-image {
+        @extend em.button-image-base;
+        $icon-color: $fontColor;
+        background-image: url($svgImage);
+    }
+}

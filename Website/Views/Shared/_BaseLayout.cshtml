@@ -16,7 +16,7 @@
     @RenderSection("BottomOfHead", required: false)
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
-<body>
+<body class="@ViewBag.BodyClasses">
     
     @RenderBody()
     

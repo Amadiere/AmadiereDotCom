@@ -1,14 +1,27 @@
 ﻿@{
     Layout = "_BaseLayout";
+    ViewBag.BodyClasses = "homepage";
 }
 <header>
     <img src="/images/logo.png" alt="Amadiere.com" class="logo" />
 </header>
-<div id="homepage">
+
+<div class="content">
     @RenderBody()
 </div>
+
 <footer>
     
+    <a href="/aboutme" class="button-aboutme">
+        <em class="button-image"></em>
+        About me
+    </a>
+
+    <a href="/blog" class="button-blog">
+        <em class="button-image"></em>
+        Read my blog &gt;
+    </a>
+
 </footer>
 
 @section BottomOfHead
