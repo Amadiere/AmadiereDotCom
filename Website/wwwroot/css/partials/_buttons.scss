@@ -5,6 +5,7 @@
     padding: 0.2em 0.5em;
     margin: 0;
     font-size: 1.2em;
+    font-weight: normal;
 }
 
 em.button-image-base {
@@ -15,24 +16,24 @@ em.button-image-base {
 }
 
 
-@mixin call-to-action($bgColor, $fontColor, $svgImage) {
+@mixin call-to-action($bg-color, $font-color, $image) {
     @extend .button;
-    background-color: $bgColor;
-    color: $fontColor;
+    background-color: $bg-color;
+    color: $font-color;
 
     &:hover {
-        background-color: $fontColor;
-        color: $bgColor;
+        background-color: $font-color;
+        color: $bg-color;
 
         > .button-image {
-            $icon-color: $bgColor;
-            background-image: url($svgImage);
+            $icon-color: $bg-color;
+            background-image: url($image);
         }
     }
 
     em.button-image {
         @extend em.button-image-base;
-        $icon-color: $fontColor;
-        background-image: url($svgImage);
+        $icon-color: $font-color;
+        background-image: url($image);
     }
 }

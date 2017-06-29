@@ -14,6 +14,7 @@
     <Content Include="wwwroot\css\partials\_boxes.scss" />
     <Content Include="wwwroot\css\partials\_buttons.scss" />
     <Content Include="wwwroot\css\Site.scss" />
+    <Content Include="wwwroot\css\_base.scss" />
     <Content Include="wwwroot\images\cool-alex.jpg" />
     <Content Include="wwwroot\images\icons\coffee-mug.svg" />
     <Content Include="wwwroot\images\icons\glass-shot.svg" />
