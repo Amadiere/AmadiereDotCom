@@ -5,12 +5,15 @@
 /* Homepage specific styles */
 body.homepage {
 
+    @media only screen and (max-width: 600px) {
+        margin-bottom: 200px;
+    }
+
     .content {
-        min-height: 100%;
         width: 100%;
         text-align: center;
         overflow: auto;
-        margin-bottom: 5em;
+        margin-bottom: 0;
 
         ul {
             list-style: none;
@@ -82,6 +85,10 @@ body.homepage {
 
     footer {
 
+        @media only screen and (min-width: 600px) {
+            display: none;
+        }
+
         .button-aboutme {
             $icon-color: $primary-color-compliment;
             $svgImage: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 128px; width: 128px;"><path d="M0 0h512v512H0z" fill="#000000" opacity="0"></path><g class="" transform="translate(0,0)" style="touch-action: none;"><path fill="' + $icon-color + '" d="M50 96c-9.972 0-18 8.028-18 18v300c0 9.972 8.028 18 18 18h412c9.972 0 18-8.028 18-18V114c0-9.972-8.028-18-18-18H50zm5 23h402v18H55v-18zm0 32h210v258H55V151zm18 18v222h7.03c.47-24.342 18.315-74.172 47.093-97.889C136.331 300.56 147.615 305 160 305c12.385 0 23.669-4.44 32.877-11.889C221.655 316.828 239.5 366.658 239.97 391H247V169H73zm222 14h146v18H295v-18zm-135 10c20.835 0 39 20.241 39 47s-18.165 47-39 47-39-20.241-39-47 18.165-47 39-47zm135 22h114v18H295v-18zm0 32h50v18h-50v-18zm80 0h66v18h-66v-18zm-16 96h98v18h-98v-18zm-32 32h130v18H327v-18z"></path></g> <!-- react-empty: 6 --> </svg>';
@@ -100,12 +107,10 @@ body.homepage {
             padding: 10px 15px;
         }
 
-        @media only screen and (max-width: 600px) {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: $primary-color;
-            color: $primary-color-compliment;
-        }
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: $primary-color;
+        color: $primary-color-compliment;
     }
 }
