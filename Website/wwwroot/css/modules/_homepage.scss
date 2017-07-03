@@ -5,20 +5,15 @@
 /* Homepage specific styles */
 body.homepage {
 
-    @media only screen and (min-width: 1000px) {
-        header {
-            width: 50%;
-        }
-    }
-
-    @media only screen and (max-width: 600px) {
-        margin-bottom: 200px;
-    }
-
     .content {
         width: 100%;
         text-align: center;
-        margin-bottom: 0;
+        display: table;
+        height: 100%;
+
+        @media only screen and (max-width: 1000px) {
+            margin-bottom: 100px;
+        }
 
         ul {
             list-style: none;
@@ -29,6 +24,12 @@ body.homepage {
 
             li {
                 text-align: left;
+            }
+        }
+
+        @media only screen and (max-width: 1000px) {
+            .introduction .buttons {
+                display: none;
             }
         }
 
@@ -44,15 +45,12 @@ body.homepage {
             .introduction {
                 background-color: $primary-color;
                 color: $primary-color-compliment;
-                max-width: 100%;
-                position: fixed;
-                top: 0;
-                bottom: 0;
-                right: 0;
-                left: 50%;
+                width: 50%;
                 font-size: 18pt;
-                padding: 4em;
-                                
+                height: 100%;
+                display: table-cell;
+                vertical-align: middle;
+
                 .buttons {
                     margin-top: 2em;
                 }
@@ -76,6 +74,9 @@ body.homepage {
 
             .sticker-box {
                 width: 50%;
+                display: table-cell;
+                height: 100%;
+                vertical-align: middle;
             }
         }
 
@@ -95,6 +96,10 @@ body.homepage {
             height: 500px;
             width: 500px;
         }
+    }
+
+    img.logo {
+        padding: 1em;
     }
 
     em.smeg {
@@ -133,7 +138,7 @@ body.homepage {
 
     footer {
 
-        @media only screen and (min-width: 600px) {
+        @media only screen and (min-width: 1000px) {
             display: none;
         }
 
