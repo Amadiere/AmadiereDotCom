@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "_BaseLayout";
+    ViewBag.BodyClasses = "aboutme";
+}
+
+<div class="content">
+    @RenderBody()
+</div>
+
+@section BottomOfHead
+{
+    @RenderSection("BottomOfHead", required: false)
+}
+
+@section Scripts
+{
+    @RenderSection("Scripts", required: false)
+}

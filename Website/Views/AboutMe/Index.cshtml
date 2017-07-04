@@ -1,7 +1,105 @@
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+    Layout = "~/Views/Shared/Layouts/_ContentLayout.cshtml";
 }
 
-<h2>About Me.</h2>
+@section BottomOfHead {
+    <link rel="stylesheet" href="https://s3.amazonaws.com/icomoon.io/114779/Socicon/style.css?rd5re8">
+}
 
+<header>
+    <h1>About Alex</h1>
+    <p>I'm Alex. I'm Dukinfield, just west of Manchester, UK. I enjoy coding, board games, drinking whisk(e)y and spending time with my wife and two boys.</p>
+
+</header>
+
+<div class="headline-section">
+    <p>I'm in the tubes of the internets!</p>
+    <a href="https://twitter.com/amadiere" target="_blank" title="Twitter"><em class="socicon-twitter"></em></a>
+    <a href="https://stackoverflow.com/users/7828/amadiere" target="_blank" title="Stack Overflow"><em class="socicon-stackexchange"></em></a>
+    <a href="https://github.com/amadiere" target="_blank"><em class="socicon-github" title="Github"></em></a>
+    <a href="https://www.linkedin.com/in/alex-holt-5b2729aa/" target="_blank" title="LinkedIn"><em class="socicon-linkedin"></em></a>
+    <a href="https://www.meetup.com/members/204197478" target="_blank" title="Meetup"><em class="socicon-meetup"></em></a>
+
+    <p>Or continue scrolling for a little bit more about me...</p>
+</div>
+
+<div class="parallax on-the-rocks"></div>
+
+<div class="headline-section">
+    <p>
+        <strong>I enjoy coding</strong>. From the large system architecture & planning, all the way down to problem solving. There is something about the Eureka moment that
+        is intoxicating. I feel with programming, I'll never stop learning, as there is always an area I know nothing about. That's what makes it so special!
+    </p>
+    <p>
+        I'm a tech lead capable of being the buck-stops-here guy, and also a team lead with an informal approach to management and with a desire to be one of the team.
+    </p>
+</div>
+
+<div class="secondary-section">
+    <p>I'm a .NET focused software engineer and architect...</p>
+    <div class="language-list">
+        <span>.NET 3.5+</span>
+        <span>.NET Core</span>
+        <span>C#</span>
+        <span>ASP.NET MVC</span>
+        <span>ASP.NET Web API</span>
+        <span>LINQ</span>
+        <span>Xamarin</span>
+        <span>Entity Framework</span>
+        <span>EPiServer CMS</span>
+        <span>MSTest</span>
+        <span>NUnit</span>
+        <span>Moq</span>
+        <span>MSMQ</span>
+        <span>Microsoft SQL</span>
+    </div>
+    <p>... with a strong background in web development...</p>
+    <div class="language-list">
+        <span>HTML5 & XHTML</span>
+        <span>JavaScript</span>
+        <span>TypeScript</span>
+        <span>CSS</span>
+        <span>SASS & LESS</span>
+        <span>Angular</span>
+        <span>Bootstrap</span>
+        <span>JQuery</span>
+        <span>Jasmine</span>
+    </div>
+    <p>... and plenty of DevOps...</p>
+    <div class="language-list">
+        <span>IIS</span>
+        <span>Git</span>
+        <span>Octopus Deploy</span>
+        <span>TFS</span>
+        <span>Build Server</span>
+        <span>NuGet</span>
+        <span>NewRelic</span>
+    </div>
+    <p>... and I have inquisitive knowledge in some other random areas...</p>
+    <div class="language-list">
+        <span>PHP</span>
+        <span>MySQL</span>
+        <span>Elixir</span>
+    </div>
+</div>
+
+<div class="parallax northern-lights"></div>
+
+<div class="headline-section">
+    I'm a big fan of board & card games. I love playing social deduction games such as <strong>One Night Werewolf</strong>, <strong>Mafia De Cuba</strong> and 
+    <strong>Secret Hitler</strong>. As well as the more in-depth, strategy-heavy ones such as <strong>Game Of Thrones</strong>, <strong>Alchemist</strong> and 
+    <strong>Through The Ages: Civilization</strong>.
+</div>
+
+<div class="secondary-section">
+    As also mentioned, when not at work drinking coffee and fruit "teas", I love Whisky.
+    I love a wide range of whisky, from the smooth Irish like Jamesons - to the heavy punch-you-in-the-face scotches like Ardbeg, Lagavulin and Laphroig.
+</div>
+
+<div class="secondary-section">
+    <h2>OK - Enough about me now.</h2>
+    <p>If you want to contact me, then you can do so by any of the social media links at the top, or by emailing me <strong>amadi<span>ere@@</span>amadiere.com</strong>.</p>
+    
+    <p><a href="/blog" class="button">Continue onto the Blog</a></p>
+</div>

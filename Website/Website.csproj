@@ -11,6 +11,7 @@
   <ItemGroup>
     <Content Include="wwwroot\css\modules\_homepage.scss" />
     <Content Include="wwwroot\css\modules\_my-name-is.scss" />
+    <Content Include="wwwroot\css\modules\_aboutme.scss" />
     <Content Include="wwwroot\css\partials\_boxes.scss" />
     <Content Include="wwwroot\css\partials\_buttons.scss" />
     <Content Include="wwwroot\css\Site.scss" />

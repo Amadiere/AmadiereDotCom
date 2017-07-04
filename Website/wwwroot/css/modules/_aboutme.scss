@@ -1,0 +1,80 @@
+﻿/// <reference path="../_base.scss" />
+/// <reference path="../partials/_buttons.scss" />
+/// <reference path="../partials/_boxes.scss" />
+
+body.aboutme {
+
+    header {
+        text-align: center;
+        padding: 3em;
+        font-size: 1.4em;
+
+        h1 {
+            color: $primary-color;
+            font-size: 30pt;
+            padding-bottom: 0.3em;
+        }
+
+        p {
+            margin: 1em;
+        }
+    }
+
+    .headline-section {
+        background-color: $primary-color;
+        color: $primary-color-compliment;
+        text-align: center;
+        padding: 2em;
+        font-size: 1.4em;
+
+        p {
+            margin: 1em;
+        }
+
+        em {
+            height: 100px;
+            font-size: 2em;
+            padding: 0 0.1em;
+            color: $primary-color-compliment;
+        }
+    }
+
+    .secondary-section {
+        text-align: center;
+        padding: 2em;
+        font-size: 1.4em;
+    }
+
+    .language-list {
+        padding: 0.5em;
+
+        span {
+            display: inline-block;
+            background-color: darken($main-background-color, 10);
+            padding: 0.5em 1em;
+            margin-top: 5px;
+
+            &:hover {
+                background-color: $primary-color;
+                color: $primary-color-compliment;
+            }
+        }
+    }
+}
+
+
+.parallax {
+    height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &.on-the-rocks {
+        background-image: url("/images/whisky-on-the-rocks.jpg");
+    }
+
+    &.northern-lights {
+        background-image: url("/images/northern-lights.jpg");
+    }
+}
