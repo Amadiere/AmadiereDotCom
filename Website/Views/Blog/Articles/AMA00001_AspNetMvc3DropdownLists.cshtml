@@ -1,0 +1,100 @@
+@{
+    ViewData["Title"] = "AMA00001_AspNetMvc3DropdownLists";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+<p>
+    There are a number of very useful helpers that come as default with the ASP.NET MVC framework, but one that always
+    seems to get people confused is the Html.DropDownListFor() helper method. So in this post, I'll quickly go over the
+    steps I use to populate the list, as well as some of the more funky features once it's up and running!
+</p>
+<p>
+    In our example, there will simply be a single drop down list on a form that shows a list of countries, from which you
+    can select and submit.
+</p>
+<p>First, we need to build a view model that is going to be the contract that determines the data that the view can display.</p>
+
+<pre><code class="csharp">public class IndexViewModel
+{
+    // Stores the selected value from the drop down box.
+    [Required]
+    public int CountryID { get; set; }
+ 
+    // Contains the list of countries.
+    public SelectList Countries { get; set; }
+}</code></pre>
+
+<p>Once we've sorted that, we can create the action result methods for our index page.</p>
+
+<pre><code class="csharp">public class HomeController : Controller
+{
+    [HttpGet]
+    public ActionResult Index()
+    {
+        IndexViewModel viewModel = new IndexViewModel();
+        viewModel.Countries = new SelectList(GetCountries(), "ID", "Name");
+        return View(viewModel);
+    }
+ 
+    [HttpPost]
+    public ActionResult Index(IndexViewModel viewModel)
+    {
+        viewModel.Countries = new SelectList(GetCountries(), "ID", "Name");
+        if (!ModelState.IsValid)
+            return View(viewModel);
+ 
+        //TODO: Do something with the selected country...
+        CMSService.UpdateCurrentLocation(viewModel.CountryID);
+ 
+        return View(viewModel);
+    }
+}</code></pre>
+
+<p>You'll notice there are two instances where we populate the Countries property on the viewModel, one in the HttpGet method
+    and the other in the HttpPost. We do this so that the list of countries is available throughout our process. You see, unlike
+    the CountryID which is submitted as part of the Request object (it's part of the form collection), our list is never stored 
+    - it's lost as soon as the user navigates away from that page. So we need to repopulate it. In reality, you may only need to
+    repopulate it when the validation fails an you have to redraw the screen in the HttpPost method, so that could be moved.
+    </p>
+<p>Then, it's just a simple case of adding this to my view:</p>
+
+<pre>
+<code class="csharp">@@Html.DropDownListFor(x => x.CountryID, Model.Countries)</code>
+</pre>
+
+<p>Or you could forcably add a blank value to the top with some "please select me, pretty please"-type text. e.g.</p>
+
+<pre><code class="csharp">@@Html.DropDownListFor(x => x.CountryID, Model.Countries, "- please select -")</code></pre>
+
+<p>
+    And there you have it! A working drop down box using MVC 3 and Razor views.
+    Now for some more fancy stuff. If you're interested in styling your menu, then you can't really go far wrong with jQuery UI 
+    SelectMenu (of which there are a few demos available, as well as a separate tutorial). To set up, you only need to do a few
+    things:
+</p>
+
+<ul>
+    <li>Download JQuery & JQueryUI and add to your solution. You can now do this step through NuGet, or manually by "Add Existing
+        Item" and downloading from the respective site.</li>
+    <li>
+        Add a reference to the .js and .css files to the header of your html header, often set by the _Layout.cshtml file. 
+        Something like the following:
+        <pre><code class="html">&lt;link type="text/css" rel="stylesheet" href="@@Url.Content("~/Content/themes/base/jquery.ui.all.css")" /&gt;
+&lt;script type="text/javascript" src="@@Url.Content("&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="@@Url.Content("&gt;&lt;/script&gt;
+</code></pre>
+    </li>
+    <li>Download and add the SelectMenu .js and .css files in much the same way.
+        <pre><code class="html">&lt;link type="text/css" rel="stylesheet" href="@@Url.Content("~/Content/selectmenu.css")" /&gt;
+&lt;script src="@@Url.Content("~/Scripts/selectmenu.js")" type="text/javascript"&gt;&lt;/script&gt;</code></pre>
+    </li>
+    <li>Then all that lies to do is to set it off going:
+        <pre><code class="html">&lt;script type="text/javascript"&gt;
+    $('select').selectmenu();
+&lt;/script&gt;</code></pre></li>
+</ul>
+
+<p>The last bit we added there simply makes this apply for every single select box that is on the page. As an aside, 
+    when doing AJAX or JQuery where you may potentially add an additional drop down list, you will need to call 
+    .selectmenu() to ensure that your new box appears like the others. It's also worth noting that you may find if 
+    your page isn't a fast loader, the standard drop down box (unstyled) will appear for a brief period.</p>

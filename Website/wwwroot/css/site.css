@@ -250,10 +250,65 @@ body.aboutme .language-list {
   .parallax.northern-lights {
     background-image: url("/images/northern-lights.jpg"); }
 
+pre code {
+  font: normal 10pt Consolas, Monaco, monospace; }
+
+body.blog div.logo-box {
+  padding-top: 1.5em;
+  padding-bottom: 0.5em;
+  margin-left: 40px;
+  margin-right: 40px; }
+  @media only screen and (min-width: 1000px) {
+    body.blog div.logo-box {
+      margin-left: 100px;
+      margin-right: 100px; } }
+
+body.blog header {
+  background-color: #9d0202;
+  padding: 2em 2em 2em 2em;
+  margin: 1em 0;
+  color: #FFFFFF; }
+  body.blog header h2 {
+    font-size: 24pt;
+    margin-bottom: 5px; }
+  @media only screen and (min-width: 1000px) {
+    body.blog header {
+      padding: 3em 3em 3em 6em; } }
+  body.blog header ul.tag-list {
+    margin-top: 10px;
+    font-size: smaller; }
+    body.blog header ul.tag-list li {
+      display: inline-block;
+      background-color: #840202;
+      padding: 5px 10px;
+      /*border-right: 5px solid $primary-color;*/ }
+
+body.blog footer {
+  background-color: #989898;
+  padding: 2em 100px;
+  margin-top: 2em; }
+
+body.blog article {
+  padding-top: 1em;
+  margin-left: 20px;
+  margin-right: 20px; }
+  @media only screen and (min-width: 1000px) {
+    body.blog article {
+      margin-left: 100px;
+      margin-right: 100px; } }
+  body.blog article p {
+    margin-bottom: 1em; }
+  body.blog article pre {
+    margin-top: 1em;
+    margin-bottom: 1em; }
+  body.blog article li {
+    margin-bottom: 1em; }
+  body.blog article ul {
+    margin-left: 2em; }
+
 * {
   padding: 0;
-  margin: 0;
-  font-family: 'Raleway', sans-serif; }
+  margin: 0; }
 
 html, body {
   height: 100%;
@@ -261,7 +316,8 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: #E4E4E4;
-  color: #000000; }
+  color: #000000;
+  font-family: 'Raleway', sans-serif; }
 
 a,
 a:hover,

@@ -1,0 +1,86 @@
+﻿/// <reference path="../_base.scss" />
+/// <reference path="../partials/_buttons.scss" />
+/// <reference path="../partials/_boxes.scss" />
+
+
+pre code {
+    font: normal 10pt Consolas, Monaco, monospace;
+}
+
+body.blog {
+    //border-top: 10px solid $primary-color;
+    div.logo-box {
+        padding-top: 1.5em;
+        padding-bottom: 0.5em;
+        margin-left: 40px;
+        margin-right: 40px;
+
+        @media only screen and (min-width: 1000px) {
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+    }
+
+    header {
+
+        h2 {
+            font-size: 24pt;
+            margin-bottom: 5px;
+        }
+
+        background-color: $primary-color;
+        padding: 2em 2em 2em 2em;
+        margin: 1em 0;
+        color: $primary-color-compliment;
+
+        @media only screen and (min-width: 1000px) {
+            padding: 3em 3em 3em 6em;
+        }
+
+        ul.tag-list {
+            margin-top: 10px;
+            font-size: smaller;
+
+            li {
+                display: inline-block;
+                background-color: darken($primary-color, 5);
+                padding: 5px 10px;
+                /*border-right: 5px solid $primary-color;*/
+            }
+        }
+    }
+
+    footer {
+        background-color: darken($main-background-color, 30);
+        padding: 2em 100px;
+        margin-top: 2em;
+    }
+
+    article {
+        padding-top: 1em;
+        margin-left: 20px;
+        margin-right: 20px;
+
+        @media only screen and (min-width: 1000px) {
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        pre {
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        li {
+            margin-bottom: 1em;
+        }
+
+        ul {
+            margin-left: 2em;
+        }
+    }
+}

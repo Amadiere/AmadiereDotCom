@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
+    <AssemblyName>Amadiere.Blog</AssemblyName>
+    <RootNamespace>Amadiere.Blog</RootNamespace>
   </PropertyGroup>
 
 </Project>

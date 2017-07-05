@@ -1,0 +1,35 @@
+@model Amadiere.Website.ViewModels.Blog.ArticleViewModel
+@{
+    ViewData["Title"] = "Article";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.BodyClasses = "blog";
+}
+
+<div class="logo-box">
+    <img src="/images/logo.png" alt="Amadiere.com" class="logo" />
+</div>
+<header>
+    <h2>@Model.Article.Title</h2>
+    <div>Published on: @Model.PublishedOn)</div>
+    <ul class="tag-list">
+        @foreach (string tag in Model.Article.Tags)
+        {
+            <li>@tag</li>
+        }
+    </ul>
+</header>
+<article>
+    @Html.Partial($"Articles/{Model.Article.ViewName}")
+</article>
+<footer>
+    Thanks for reading this blog!
+</footer>
+
+@section BottomOfHead
+{
+    <link rel="stylesheet" href="/css/highlight/github.css" />
+    <script type="text/javascript" src="/js/highlight.min.js"></script>
+    <script type="text/javascript">
+        hljs.initHighlightingOnLoad();
+    </script>
+}
