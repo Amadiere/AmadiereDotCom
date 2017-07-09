@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Amadiere.Blog;
+using Amadiere.Blog.Repositories;
 using Amadiere.Website.ViewModels.Blog;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +9,16 @@ namespace Amadiere.Website.Controllers
 {
     public class BlogController : Controller
     {
+        private IArticleReader Articles { get; set; }
+
+        //awwww, tsk tsk. Do DI, Alex.
+        public BlogController() : this(new ArticleReader(new BlogRepository())) { }
+
+        public BlogController(IArticleReader articleReader)
+        {
+            Articles = articleReader;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -14,23 +26,15 @@ namespace Amadiere.Website.Controllers
 
         public IActionResult Article(int? year, int? month, string slug)
         {
-            var viewModel = new ArticleViewModel();
-            viewModel.Article = new BlogViewItem()
-            {
-                // Incoming parameters
-                Year = year,
-                Month = month,
-                Slug = slug,
+            if (!year.HasValue || !month.HasValue || string.IsNullOrEmpty(slug))
+                return RedirectToAction("Index");
 
-                // Made up stuff.
-                Title = "ASP.NET MVC 3: Drop Down Lists / SelectLists",
-                CreatedOn = new DateTime(2011, 08, 30, 10, 42, 0),
-                PublishedOn = new DateTime(2011, 08, 30, 10, 42, 0),
-                LastModifiedOn = new DateTime(2011, 08, 30, 10, 42, 0),
-                DeletedOn = null,
-                ViewName = "AMA00001_AspNetMvc3DropdownLists",
-                Tags = new List<string>() { "JQuery", "ASP.NET MVC" }
-            };
+            var article = Articles.Get(year.Value, month.Value, slug);
+            if (article == null)
+                return RedirectToAction("Index");
+
+            var viewModel = new ArticleViewModel();
+            viewModel.Article = new BlogViewItem(article);
 
             return View(viewModel);
         }

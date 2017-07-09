@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Amadiere.Blog.Repositories
 {
-    public class BlogRepository
+    public class BlogRepository : IBlogRepository
     {
         const string BlogFilePath = "data/blog-articles.json";
 
