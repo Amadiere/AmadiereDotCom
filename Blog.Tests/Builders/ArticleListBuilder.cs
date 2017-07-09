@@ -27,6 +27,10 @@ namespace Blog.Tests.Builders
             yield return GetArticle(3);
             yield return GetArticle(4, new []{ "PHP"}, isDeleted:true);
             yield return GetArticle(5, isDeleted:true);
+            yield return GetArticle(6, new[] { "ASP.NET MVC" });
+            yield return GetArticle(7);
+            yield return GetArticle(8);
+            yield return GetArticle(9);
         }
 
         private BlogArticle GetArticle(int id, string[] tags = null, bool isDeleted = false)

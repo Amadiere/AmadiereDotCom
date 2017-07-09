@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Amadiere.Blog.Model;
 using Amadiere.Blog.Repositories;
 
 namespace Amadiere.Blog
 {
-    public class ArticleReader
+    public class ArticleReader : IArticleReader
     {
         private IBlogRepository BlogRepository { get; set; }
 
@@ -36,6 +35,12 @@ namespace Amadiere.Blog
         public IEnumerable<BlogArticle> GetAllByTag(string tag)
         {
             return GetAllActiveArticles().Where(x => x.Tags.Contains(tag));
+        }
+
+        public IEnumerable<BlogArticle> GetMostRecent()
+        {
+            return GetAllActiveArticles().Take(5)
+                .OrderByDescending(x => x.PublishedOn);
         }
     }
 }

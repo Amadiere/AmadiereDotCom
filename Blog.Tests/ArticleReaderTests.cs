@@ -163,7 +163,7 @@ namespace Blog.Tests
         public void GetAllByTag_WithValidTag_ReturnsArticles()
         {
             // arrange
-            string tag = "Elixir";
+            string tag = "ASP.NET MVC";
 
             var articles = new ArticleListBuilder().Build().Object;
             var mockRepo = new Mock<IBlogRepository>();
@@ -217,6 +217,46 @@ namespace Blog.Tests
             // assert
             Assert.IsNotNull(result);
             Assert.IsFalse(result.Any());
+        }
+
+        [TestMethod]
+        public void GetMostRecent_Returns5()
+        {
+            // arrange
+            var articles = new ArticleListBuilder().Build().Object;
+            var mockRepo = new Mock<IBlogRepository>();
+            mockRepo.Setup(x => x.Articles).Returns(articles);
+
+            var articleReader = new ArticleReader(mockRepo.Object);
+
+            // act
+            var result = articleReader.GetMostRecent();
+
+            // assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(5, result.Count());
+        }
+
+        [TestMethod]
+        public void GetMostRecent_ReturnsMostRecentlyPublishedFirst()
+        {
+            // arrange
+            var articles = new ArticleListBuilder().Build().Object;
+            var mockRepo = new Mock<IBlogRepository>();
+            mockRepo.Setup(x => x.Articles).Returns(articles);
+
+            var articleReader = new ArticleReader(mockRepo.Object);
+
+            // act
+            var actualResult = articleReader.GetMostRecent();
+            var expectedResult = actualResult.OrderByDescending(x => x.PublishedOn);
+
+            // assert
+            Assert.AreEqual(expectedResult.ElementAt(0).Id, actualResult.ElementAt(0).Id);
+            Assert.AreEqual(expectedResult.ElementAt(1).Id, actualResult.ElementAt(1).Id);
+            Assert.AreEqual(expectedResult.ElementAt(2).Id, actualResult.ElementAt(2).Id);
+            Assert.AreEqual(expectedResult.ElementAt(3).Id, actualResult.ElementAt(3).Id);
+            Assert.AreEqual(expectedResult.ElementAt(4).Id, actualResult.ElementAt(4).Id);
         }
     }
 }
