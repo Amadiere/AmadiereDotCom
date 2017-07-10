@@ -1,0 +1,249 @@
+@{
+    ViewData["Title"] = "AMA00001_AspNetMvc3DropdownLists";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+<p>
+    I've recently experimented a little bit with some of the new unobtrusive JavaScript stuff that 
+    is now included as part of the default ASP.NET MVC 3 project template. While not an overly complex 
+    subject, it's been one of them plugins I wanted to have a dabble with, but I didn't quite find the
+    time until now. And I must say, it was a lot easier to sort out than I thought it might be! I
+    should point out that although this is an ASP.NET MVC 3 example, the concepts and the fact that
+    this is mostly just JQuery means that it's not limited to that, earlier versions of ASP.NET MVC
+    can use happily, as can WebForms, PHP, Ruby and even Classic ASP!
+</p>
+<p>
+    Some things we'll try and do in this blog post:
+</p>
+<ul>
+    <li>Setup a simple form with server-side validation of input fields which redirects to a 'Success'
+        page or re-renders the form depending on whether it was successful or not.</li>
+    <li>Add JQuery validation for simple client side validation to the form.</li>
+    <li>Add Unobtrusive JavaScript support which will submit the form via AJAX.</li>
+</ul>
+
+<p>Creating a basic application:</p>
+<p>Firstly, I created a ASP.NET MVC 3 Web Application (Empty) in VS2010 and got to work updating the
+    JavaScript libraries that were in it. This can be done via the NuGet Console, or by right clicking 
+    "References" in the Solution Explorer, "Add Library Reference" and then clicking the update side-tab.
+    From there you can update all the default stuff.</p>
+
+<p>
+    Done that? Good. Next we'll add a default controller, a view model to pass the data around &
+    two views (one for allowing us to edit the form and the other as a success page). It's worth
+    noting that I'm doing nothing that special on these and that I'm using the default _Layout.cshtml
+    to apply the header and footer as it sees fit.
+</p>
+
+<p>/Controllers/BlackCoffeeController.cs</p>
+<pre><code class="csharp">using System.Web.Mvc;
+using UnobtrusiveAjaxExample.ViewModels.BlackCoffee;
+ 
+namespace UnobtrusiveAjaxExample.Controllers
+{
+    public class BlackCoffeeController : Controller
+    {
+        [HttpGet]
+        public ActionResult Rocks()
+        {
+            RocksViewModel viewModel = new RocksViewModel();
+            return View(viewModel);
+        }
+ 
+        [HttpPost]
+        public ActionResult Rocks(RocksViewModel viewModel)
+        {
+            if (!ModelState.IsValid) return View(viewModel);
+            // Do something Database-y here.
+            return View("Success");
+        }
+    }
+}</code></pre>
+
+<p>/ViewModels/BlackCoffee/RocksViewModel.cs</p>
+
+<pre><code class="csharp">using System.ComponentModel.DataAnnotations;
+ 
+namespace UnobtrusiveAjaxExample.ViewModels.BlackCoffee
+{
+    public class RocksViewModel
+    {
+        [Required]
+        public string Forename { get; set; }
+ 
+        [Required]
+        public string Surname { get; set; }
+ 
+        [Required]
+        public string Message { get; set; }
+    }
+}</code></pre>
+
+<p>Then the two views, firstly: /Views/BlackCoffee/Rocks.cshtml</p>
+
+<pre>
+<code class="csharp">@@model UnobtrusiveAjaxExample.ViewModels.BlackCoffee.RocksViewModel
+ 
+@@{
+    ViewBag.Title = "Rocks";
+}
+&lt;h2&gt;Black Coffee Rocks?&lt;/h2&gt;
+&lt;div id="content"&gt;
+@@Html.ValidationSummary()
+@@using(Html.BeginForm())
+{
+    &lt;ul&gt;
+	&lt;li&gt;
+            @@Html.LabelFor(x =&gt; x.Forename)
+            @@Html.EditorFor(x =&gt; x.Forename)
+            @@Html.ValidationMessageFor(x =&gt; x.Forename)
+        &lt;/li&gt;
+	&lt;li&gt;
+            @@Html.LabelFor(x =&gt; x.Surname)
+            @@Html.EditorFor(x =&gt; x.Surname)
+            @@Html.ValidationMessageFor(x =&gt; x.Surname)
+        &lt;/li&gt;
+	&lt;li&gt;
+            @@Html.LabelFor(x =&gt; x.Message)
+            @@Html.EditorFor(x =&gt; x.Message)
+            @@Html.ValidationMessageFor(x =&gt; x.Message)
+        &lt;/li&gt;
+&lt;/ul&gt;
+    &lt;div&gt;&lt;input name="Continue" type="submit" value="Continue" /&gt;&lt;/div&gt;
+}
+&lt;/div&gt;</code>
+</pre>
+
+<p>And then /Views/BlackCoffee/Success.cshtml</p>
+
+<pre><code class="csharp">@@{
+    ViewBag.Title = "Success";
+}
+&lt;h2&gt;Success&lt;/h2&gt;
+&lt;p&gt;Congratulations! You've successfully declared BLack Coffee as being totally rockin'!&lt;/p&gt;</code></pre>
+
+<p>
+    At this point now, you should be able to build and run your application and navigate to
+    /BlackCoffee/Rocks and verify that the page redraws the form unless all boxes are filled in. If you
+    do fill them all in, you should get the success page.
+</p>
+
+<p>Adding JQuery Validation with barely any effort for standard Data Annotations.</p>
+
+<p>With certain DataAnnotations such as the <code>[Required]</code> attribute and <code>[StringLength]</code>, you 
+    should be able to get simple JQuery client side checks, which while not a replacement for server side checks,
+    add some speedy feedback which will be especially welcomed by users who find themselves struggling 
+    over long distance or slow connections. The key point to note here is that the checks are performed
+    both sides (client and server) - so it doesn't matter if the user has JavaScript disabled or is using 
+    a browser not capable of running it - the checks will still get done. It's just an added bonus.</p>
+
+<p>To do, simply add references to the JavaScript files to your html's <code>&lt;head&gt;</code>
+    tag. In this case, I'm going to add them directly to the _Layout.cshtml file.
+</p>
+
+<pre><code class="html">&lt;script src="@Url.Content("~/Scripts/jquery-1.6.1.min.js")" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"&gt;&lt;/script&gt;</code></pre>
+
+<p>You'll spot that there are 4 included files there - the last one (the JQuery.unobtrusive-ajax.min.js)
+    is for the next part - but we'll put it in now in preparation.</p>
+
+<p>You should find that the Web.Config file already has the following lines in already (specifically 
+    lines 10 & 11), but have a gander for the following and if it doesn't exist or is set different to
+    this, update the file appropriately.</p>
+
+<pre><code class="xml">&lt;appSettings&gt;
+    &lt;add key="webpages:Version" value="1.0.0.0" /&gt;
+    &lt;add key="ClientValidationEnabled" value="true" /&gt;
+    &lt;add key="UnobtrusiveJavaScriptEnabled" value="true" /&gt;
+&lt;/appSettings&gt;</code></pre>
+
+<p>We're now cooking with gas! Save, Build and try out your application. You should be able to spot that when 
+    clicking your submit button, the page doesn't go away to the server at all to check the field validates,
+    it's doing it on the client. Good stuff!</p>
+
+<p>Adding Unobtrusive AJAX into the mix.</p>
+
+<p>This should be a relatively easy process, but there are a few things we need to consider sorting out before 
+    we continue too much further:</p>
+
+<ul>
+    <li>Update the views to make the Form work via AJAX (without breaking non-JavaScript/AJAX support)</li>
+    <li>Update the controller to detect whether the request is an AJAX request and if so, avoid sending the 
+    header / footer / other stuff back with it.</li>
+</ul>
+
+<p>The first part is quite simple. Within the Rocks.cshtml we created earlier which is our edit form view, 
+    we used the HtmlHelper class to create the form tag. All we need to do now is change that to use the 
+    AjaxHelper class and pass in some options and we're off to a winner!</p>
+
+<pre><code class="csharp">@@using(Ajax.BeginForm(new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "content" }))</code></pre>
+
+<p>You should be able to see there that there is AjaxOptions class "newed up" directly in the view. If you're
+    uncomfortable with doing this, you could create it directly in the view model and pass it in from there.
+    There are a ton of options that you can go into, most of which are touched upon on Brad Wilson's blog post
+    on this subject (if you haven't read Brad Wilson's blog, you probably should add it to your reader - it's
+    exceptional and includes a good chuck of stuff relating to ASP.NET MVC and related topics). You'll also
+    spot we provide a UpdateTargetId - this represents the HTML element into which all the view result is going
+    to get dumped into. In this case, our DIV on our Rocks.cshtml page - but this could be anything and in fact
+    nothing, if you don't want to spew out content back to the user for whatever reason.</p>
+
+<p>If you ran the application now, you'd find that all the AJAX and the JQuery would work great, but as part
+    of the Ajax Request, the header and footer would be returned and very soon you'd end up with a webpage 
+    that looks like it's been designed by someone who's been watching Inception too much. This thankfully 
+    (or more specifically thanks to the ASP.NET team), isn't a problem as we can do a little check before 
+    returning the view while in the appropriate controller method. Using the example above, you'd be able
+    to change it to something like this:</p>
+
+<pre><code class="csharp">[HttpPost]
+public ActionResult Rocks(RocksViewModel viewModel)
+{
+    if (!ModelState.IsValid) return View(viewModel);
+    // Do something Database-y here.
+    if (Request.IsAjaxRequest()) return PartialView("Success");
+    return View("Success");
+}</code></pre>
+
+<p>You'll spot with this example we are returning exactly the same view. However, by returning it as a Partial
+    view, we are ensuring it does not get rendered as part of a bigger page, so all of the headers / footers 
+    and other things included via layout pages are ignored.</p>
+
+<p>Other things you can do to improve stuff:</p>
+
+<p>There are a plenty of other very easy things you can add too, such as:</p>
+<ul>
+    <li>Loading image: Simply provide it with a content div to display while loading (and a timeout if you want)
+        and in will show() that while that particular AJAX call is made. Meaning that if you want to, you can lock 
+        the UI or provide visual feedback that the users request is currently in progress.</li>
+    <li>There are four callback methods you can set for OnBegin, OnSuccess, OnFailure and OnCompleted which will
+        trigger as appropriate. This allows you to add all sorts of extra functionality to the application in those
+        instances you want to do more than simply "add some HTML to a div". However, two things to note regarding
+        these function calls:
+        <ul>
+            <li>The functions you declare should not live inside of the JQuery document.ready() method or other 
+                shorthand notation for that. Just plain functions in a .js file is fine (though, you can of course, 
+                still use JQuery - that's not a problem).</li>
+            <li>You might find that the $(this) object within the JavaScript is not populated by the time you get 
+                to the methods. You can solve this to some degree by changing the following line from:
+                <pre><code class="javascript">options.data.push({ name: "X-Requested-With", value: "XMLHttpRequest" });</code></pre>
+                to:
+                <pre><code class="javascript">options.data.push({ name: "X-Requested-With", value: "XMLHttpRequest" });
+options.context = element;</code></pre>
+                <p>
+                    If I'm honest, I don't know why this line is missing from the file in the first place. I can't 
+                    imagine it's just been forgotten as it seems like such a key thing to be able to trigger events
+                    based on the click events (especially on pages where there are lots of controls which may call
+                    the AJAX request). I suspect there is a good reason - but I don't know it yet.
+                </p>
+            
+            </li>
+        </ul>
+    </li>
+    <li>You can use this on more than just <code>&lt;form&gt;</code> tags. For example, it's just as easy to use
+        the Ajax.ActionLink method which works in a very similar way and has some of your favourite overloads still
+        available!</li>
+    <li>As mentioned at the top, this is mostly just JavaScript. If you wanted to do this with any other server
+        side technology, all you'd need to do is replace the AjaxHelper methods with your own way of outputting the
+        specific HTML "data-" based attributes and you're up and running!</li>
+</ul>

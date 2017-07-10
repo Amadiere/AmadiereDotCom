@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\AboutMe\" />
-    <Folder Include="Views\Blog\Articles\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +56,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Blog\Blog.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Data\blog-articles.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

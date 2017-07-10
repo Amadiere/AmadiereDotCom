@@ -14,5 +14,214 @@
       "JQuery",
       "ASP.NET MVC"
     ]
+  },
+
+  {
+    "id": 2,
+    "year": 2011,
+    "month": 6,
+    "slug": "unobtrusive-javascript-in-asp-net-mvc3-with-jquery",
+    "title": "Unobtrusive JavaScript in ASP.NET MVC3 with JQuery",
+    "createdOn": "2011-06-20T09:45:00.511Z",
+    "publishedOn": "2011-06-20T09:45:00.511Z",
+    "lastModifiedOn": "2011-06-20T09:45:00.511Z",
+    "deletedOn": null,
+    "viewName": "AMA00002_UnobtrusiveJavaScriptAspNetMvcJQuery",
+    "tags": [
+      "ASP.NET MVC",
+      "C#",
+      "HTML",
+      "JQuery"
+    ]
+  },
+
+  {
+    "id": 3,
+    "year": 2011,
+    "month": 2,
+    "slug": "c-net-classic-asp-password-hashing",
+    "title": "C#.NET & Classic ASP Password Hashing",
+    "createdOn": "2011-02-10T09:02:00.511Z",
+    "publishedOn": "2011-02-10T09:02:00.511Z",
+    "lastModifiedOn": "2011-02-10T09:02:00.511Z",
+    "deletedOn": null,
+    "viewName": "AMA00003_ClassicAspPasswordHashing",
+    "tags": [
+      "ASP.NET",
+      "Classic ASP",
+      "VBScript",
+      "Cryptography",
+      "Security"
+    ]
+  },
+
+  {
+    "id": 4,
+    "year": 2010,
+    "month": 9,
+    "slug": "isolated-storage-on-windows-phone-7",
+    "title": "Isolated Storage on Windows Phone 7",
+    "createdOn": "2010-09-10T09:30:00.511Z",
+    "publishedOn": "2010-09-10T09:30:00.511Z",
+    "lastModifiedOn": "2010-09-10T09:30:00.511Z",
+    "deletedOn": null,
+    "viewName": "AMA00004_IsolatedStorageWindowsPhone7",
+    "tags": [
+      "C#",
+      "Windows Phone"
+    ]
+  },
+
+  {
+    "id": 5,
+    "year": 2010,
+    "month": 4,
+    "slug": "development-smtp-servers-for-iis7-5-on-windows-7",
+    "title": "Development SMTP Servers for IIS7.5 on Windows 7",
+    "createdOn": "2010-04-06T15:43:00.511Z",
+    "publishedOn": "2010-04-06T15:43:00.511Z",
+    "lastModifiedOn": "2010-04-06T15:43:00.511Z",
+    "deletedOn": null,
+    "viewName": "AMA00005_DevelopmentSmtpIISWindows7",
+    "tags": [
+      "ASP.NET",
+      "C#",
+      "IIS"
+    ]
+  },
+
+  {
+    "id": 6,
+    "year": 2010,
+    "month": 3,
+    "slug": "good-quality-image-resizing-in-c",
+    "title": "Good Quality Image Resizing in C#",
+    "createdOn": "2010-03-15T20:40:00.511Z",
+    "publishedOn": "2010-03-15T20:40:00.511Z",
+    "lastModifiedOn": "2010-03-15T20:40:00.511Z",
+    "deletedOn": null,
+    "viewName": "AMA00006_GoodQualityImageResizing",
+    "tags": [
+      "ASP.NET",
+      "C#"
+    ]
+  },
+
+  {
+    "id": 7,
+    "year": 2010,
+    "month": 3,
+    "slug": "4-top-tips-for-portable-asp-net-mvc-apps",
+    "title": "4 Top Tips for portable ASP.NET MVC Apps",
+    "createdOn": "2010-03-01T22:22:00.511Z",
+    "publishedOn": "2010-03-01T22:22:00.511Z",
+    "lastModifiedOn": "2010-03-01T22:22:00.511Z",
+    "deletedOn": null,
+    "viewName": "AMA00007_PortableMvcApps",
+    "tags": [
+      "ASP.NET MVC",
+      "CSS",
+      "HTML"
+    ]
+  },
+
+  {
+    "id": 8,
+    "year": 2010,
+    "month": 2,
+    "slug": "the-biggest-bits-are-the-little-bits",
+    "title": "The Biggest Bits Are The Little Bits",
+    "createdOn": "2010-02-12T21:56:00.511Z",
+    "publishedOn": "2010-02-12T21:56:00.511Z",
+    "lastModifiedOn": "2010-02-12T21:56:00.511Z",
+    "deletedOn": null,
+    "viewName": "AMA00008_BiggestBitsAreTheLittleBits",
+    "tags": [
+      "Usability",
+      "Craftsmanship"
+    ]
+  },
+
+  {
+    "id": 9,
+    "year": 2009,
+    "month": 7,
+    "slug": "php-connections-to-mssql-ntwdblib-dll",
+    "title": "PHP Connections to MSSQL & ntwdblib.dll",
+    "createdOn": "2009-07-29T12:40:00.511Z",
+    "publishedOn": "2009-07-29T12:40:00.511Z",
+    "lastModifiedOn": "2009-07-29T12:40:00.511Z",
+    "deletedOn": null,
+    "viewName": "AMA00009_PHPConnectionsNtwdblib",
+    "tags": [
+      "PHP",
+      "Microsoft SQL"
+    ]
+  },
+
+  {
+    "id": 10,
+    "year": 2009,
+    "month": 6,
+    "slug": "multiple-subversion-projects-in-one-visual-studio-solution-using-svnexternals",
+    "title": "Multiple Subversion Projects in one Visual Studio Solution using svn:externals",
+    "createdOn": "2009-06-05T19:05:00.511Z",
+    "publishedOn": "2009-06-05T19:05:00.511Z",
+    "lastModifiedOn": "2009-06-05T19:05:00.511Z",
+    "deletedOn": null,
+    "viewName": "AMA00010_MultipleSubversionProjects",
+    "tags": [
+      "Subversion",
+      "Visual Studio"
+    ]
+  },
+
+  {
+    "id": 11,
+    "year": 2009,
+    "month": 4,
+    "slug": "mysql-two-way-master-master-replication",
+    "title": "MySQL Two-Way, Master-Master Replication",
+    "createdOn": "2009-04-20T13:32:00.511Z",
+    "publishedOn": "2009-04-20T13:32:00.511Z",
+    "lastModifiedOn": "2009-04-20T13:32:00.511Z",
+    "deletedOn": null,
+    "viewName": "AMA00011_MysqlTwoWayMasterMasterReplication",
+    "tags": [
+      "MySQL"
+    ]
+  },
+
+  {
+    "id": 12,
+    "year": 2009,
+    "month": 4,
+    "slug": "calculating-the-date-of-easter-programatically",
+    "title": "Calculating the Date of Easter Programatically",
+    "createdOn": "2009-04-07T23:25:00.511Z",
+    "publishedOn": "2009-04-07T23:25:00.511Z",
+    "lastModifiedOn": "2009-04-07T23:25:00.511Z",
+    "deletedOn": null,
+    "viewName": "AMA00012_CalculatingEaster",
+    "tags": [
+      "ClassicASP",
+      "VBScript"
+    ]
+  },
+
+  {
+    "id": 13,
+    "year": 2009,
+    "month": 4,
+    "slug": "the-layout-of-a-subversion-repository",
+    "title": "The Layout of a Subversion Repository",
+    "createdOn": "2009-04-04T13:07:00.511Z",
+    "publishedOn": "2009-04-04T13:07:00.511Z",
+    "lastModifiedOn": "2009-04-04T13:07:00.511Z",
+    "deletedOn": null,
+    "viewName": "AMA00013_LayoutOfSubversionRepository",
+    "tags": [
+      "Subversion"
+    ]
   }
 ]
