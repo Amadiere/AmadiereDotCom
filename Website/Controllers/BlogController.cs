@@ -11,9 +11,6 @@ namespace Amadiere.Website.Controllers
     {
         private IArticleReader Articles { get; set; }
 
-        //awwww, tsk tsk. Do DI, Alex.
-        public BlogController() : this(new ArticleReader(new BlogRepository())) { }
-
         public BlogController(IArticleReader articleReader)
         {
             Articles = articleReader;

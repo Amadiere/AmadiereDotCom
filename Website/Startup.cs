@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Amadiere.Blog;
+using Amadiere.Blog.Repositories;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +27,8 @@ namespace Amadiere.Website
         {
             // Add framework services.
             services.AddMvc();
+            services.AddScoped<IBlogRepository, BlogRepository>();
+            services.AddScoped<IArticleReader, ArticleReader>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

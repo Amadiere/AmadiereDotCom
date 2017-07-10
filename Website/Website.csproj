@@ -51,6 +51,11 @@
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\blog-articles.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Blog\Blog.csproj" />
   </ItemGroup>
 
