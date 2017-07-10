@@ -1,0 +1,123 @@
+<p>One of the most amazing omissions from the Windows Phone 7 OS is an SQL Server of some description that applications
+    can use (I think there is a SQL Server Compact edition baked into the build, but it's only exposed to the native 
+    apps). This leaves anyone familiar with doing all their storage via relational databases in a bit of a lurch.</p>
+<p>Having a look around, there were a few work-arounds, namely third party libraries such as Perst & Sterling. These 
+    act as a layer of abstraction that allow you to use LINQ to access your objects and could be of benefit for 
+    some of the more complex applications. I found both of them to have their drawbacks.</p>
+
+<p><a href="http://www.mcobject.com/perst" target="_blank"></a>Perst: From McObject is one alternative, but if
+    you plan on doing a commercial application, you should bare in mind their licensing, of which, their FAQ
+    says:</p>
+
+<blockquote>
+    No, Perst is not free. McObject Perst is available under a dual license. Under the GPL, you may evaluate 
+    the source code free of charge and you may use Perst free of charge in an application for which the 
+    source code is also freely available. If you wish to use a Perst in an application but do not or cannot 
+    redistribute your application source code, you can use Perst under a commercial license.
+</blockquote>
+
+<p><a href="">Sterling</a>: This seemed promising, but I had a number of issues getting the code to work (it 
+    was late, in fairness) I decided to give up.</p>
+<p>In reality though, most applications that are going to be made don't need any complicated database structure 
+    behind them. Database implementations are most likely going to be overkill. This is where I decided to 
+    do what probably the majority of WP7 developers have decided to do, and "Roll-Their-Own" database solution.
+    Mine is based on a general accepted practice, using XML Serialisation to store my POCOs. While it might
+    have limitations and performance issues later down the line, for now - it's performing very admirably 
+    and there seemed no point in premature optimisation just yet.</p>
+
+<h3>My Solution</h3>
+<p>The main class I created (<strong>MyDataContext.cs</strong>) contains the functions for both saving and loading the data, as well as the 'schema' for the entire database.</p>
+
+<pre><code class="csharp">using System;
+using System.Collections.Generic;
+using IsolatedExampleApp.Data.Models;
+using System.IO.IsolatedStorage;
+using System.IO;
+using System.Xml.Serialization;
+ 
+namespace IsolatedExampleApp.Data
+{
+  public class IsolatedDatabase
+  {
+    public IsolatedDatabase()
+    {
+      // For each model that is a list item, you need to add a initialising statement to the Constructor
+      Albums = new List();
+      Artists = new List();
+    }
+ 
+    // These properties effectively form the publicly viewable schema of the database.
+    public List Albums { get; set; }
+    public List Artists { get; set; }
+    public Options Options { get; set; }
+ 
+    public void Load()
+    {
+      using (IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication())
+      using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream("IsolatedExampleApp.txt", FileMode.OpenOrCreate, FileAccess.Read, store))
+      using (StreamReader reader = new StreamReader(stream))
+      {
+        XmlSerializer serializer = new XmlSerializer(typeof(IsolatedDatabase));
+        var unserialized = reader.EndOfStream ? new IsolatedDatabase() : (IsolatedDatabase)serializer.Deserialize(reader);
+ 
+        // Each schema is repopulated with information when the app is loaded.
+        Albums = unserialized.Albums;
+        Artists = unserialized.Artists;
+        Options = unserialized.Options;
+      }
+    }
+ 
+    public bool Save()
+    {
+      try
+      {
+        using (IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication())
+        using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream("IsolatedExampleApp.txt", FileMode.Create, FileAccess.Write, store))
+        {
+          XmlSerializer serializer = new XmlSerializer(typeof(IsolatedDatabase));
+          serializer.Serialize(stream, this);
+        }
+        return true;
+      }
+      catch (Exception ex)
+      {
+        return false;
+      }
+    }
+  }
+}</code></pre>
+
+<p>As you can see from the code above, as you develop more data stores, the code needs updating in multiple locations.</p>
+
+<ul>
+    <li>Properties need setting for each one (they are the publicly available access points for the data).</li>
+    <li>Any LISTS<> require their lists initialised by the Constructor method.</li>
+    <li>When the data is 'Load()'ed, each property must have it's values manually set.</li>
+    <li>All the Models still need defining elsewhere in your application (in my example above, they are in the IsolatedExampleApp.Data.Models namespace.</li>
+</ul>
+
+<p>If you can overlook this repeated typing, then this seems to be a good starting point for persisting data in your Windows Phone 7 Application. To use it should then be fairly straight forward.</p>
+
+<pre><code class="csharp">_db = new IsolatedDatabase();
+_db.Load();
+ 
+// Adding an album...
+_db.Albums.Add(newAlbum);
+_db.Save();
+ 
+// Deleting an album...
+_db.Albums.Remove(deleteAlbum);
+_db.Save();
+ 
+// Add or Update an album...
+Album existingAlbum = _db.Albums.Where(x => x.ID == album.ID).FirstOrDefault();
+if (existingAlbum != null)
+{
+  Delete(existingAlbum);
+}
+Add(album);
+_db.Save();
+ 
+// Or just getting a specific album...
+IEnumerable albums = _db.Albums as IEnumerable;
+return albums.Where(x => x.ID == id).FirstOrDefault();</code></pre>

@@ -1,0 +1,51 @@
+<p>
+    I've had one of them days. You know? That "simple task" that spiralled out of control and resulted in me
+    losing half a day to it's tricks! That task? It was sending an email from an ASP.NET (MVC2) application.
+    Previously, I've always done this via setting up IIS and the SMTP server in there, but for some reason,
+    Microsoft decided they didn't want to include the SMTP Server in Windows 7 anymore (even 'Ultimate' - it
+    might also be the case for Windows Vista). So, I had to find an alternative.
+</p>
+<p>There were a few options available to me:</p>
+
+<ul>
+    <li>
+        <strong>SMTP Server on Localhost</strong>: This was the obvious choice, but after trying Mercury
+        Mail and it's quarter of a million settings as it installed (I'm no Email Admin, so didn't know the
+        answer to all of them). It didn't work and I'm not sure why. To rub salt into the would, there was no
+        uninstall either - it proper irritated me and I gave up using it out of principal.
+    </li>
+    <li>
+        <strong>SMTP Server on Localhost that is really just a Relay</strong>: Well, sounded good - but again,
+        it was designed by people with bigger brains than me and it failed to send to what I thought was a
+        correctly configured IIS7.5 config pointing to my GMail account.
+    </li>
+    <li><strong>Fake Server</strong>: Something that doesn't actually send emails, but pretends to.</li>
+</ul>
+
+<p>
+    The last one is the one I eventually choose and boy am I glad I did! I downloaded the excellent
+    <a href="http://smtp4dev.codeplex.com/" target="_blank">SMTP 4 DEV from Codeplex</a>
+</p>
+
+<ul>
+    <li>I don't have 100's of emails cluttering up my email box for starters. Win!</li>
+    <li>It was so easy to set-up and it worked perfectly without a change to my code. Win!</li>
+    <li>It's free. Win!</li>
+</ul>
+
+<p>Here is some fake code that should send an email to the localhost.</p>
+
+<pre><code class="csharp">MailMessage emailMessage = new MailMessage();
+string messageBody = "This is the content of the email will be awesome!";
+ 
+emailMessage.Body = messageBody;
+emailMessage.Priority = MailPriority.Normal;
+emailMessage.From = new MailAddress("no-reply@amadiere.com"); // obviously, this email address doesn't exist :)
+emailMessage.Subject = "The answer is 42";
+emailMessage.IsBodyHtml = false;
+ 
+SmtpClient mSmtpClient = new SmtpClient();
+mSmtpClient.Host = "127.0.0.1";  // localhost
+mSmtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+ 
+mSmtpClient.Send(emailMessage);</code></pre>

@@ -1,0 +1,49 @@
+<p>I encountered a little bit of a problem the other day with some image resizing code from within an 
+    ASP.NET MVC application that was misbehaving. The issue was just a general C# and ASP.NET one, not
+    related to MVC or Webforms, but it was that for some reason the images were losing a significant
+    amount of quality when resizing. I'm talking a pixel sharp 2000 x 2000 picture that when resized 
+    to 300 x 300, was woefully blurry. Initially, the code was simply using the GetThumbnailImage() 
+    method to produce it's resizes, this turned out to be the mistake!</p>
+
+<p>While GetThumbnailImage() is fine for small thumbnail images (the clue I guess, was in the name),
+    it somewhat struggled on the larger versions. To fix the issue, I had to convert the image to a
+    bitmap, faff about with it like that, then export it back to a Jpeg once I was done.</p>
+
+<p>For future me (and anyone else this might help), here is the code I eventually settled on:</p>
+
+<pre><code class="csharp">EncoderParameters encodingParameters = new EncoderParameters(1);
+encodingParameters.Param[0] = new EncoderParameter(Encoder.Quality, 90L); // Set the JPG Quality percentage to 90%.
+ 
+ImageCodecInfo jpgEncoder = GetEncoderInfo("image/jpeg");
+ 
+// Incoming! This is the original image. This line can effectively be anything, but in this example it's coming from a stream.
+var image = Image.FromStream(new System.IO.MemoryStream(Picture));
+ 
+// Creating two blank canvas. One that the original image is placed into, the other for the resized version.
+Bitmap originalImage = new Bitmap(image);
+Bitmap newImage = new Bitmap(originalImage, 300, (image.Height * 300 / image.Width));  // Width of 300 & maintain aspect ratio (let it be as high as it needs to be).
+ 
+// We then do some funky voodoo with the newImage. Changing it to a graphic to allow us to set the HighQualityBilinear property and resize nicely.
+Graphics g = Graphics.FromImage(newImage);
+g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
+g.DrawImage(originalImage, 0, 0, newImage.Width, newImage.Height);
+ 
+var streamLarge = new System.IO.MemoryStream();
+newImage.Save(streamLarge, jpgEncoder, encodingParameters);
+ 
+// This is the line that returns the picture to the relevant part of the model.
+_event.Picture = streamLarge.ToArray();
+ 
+// No need for all that drama for the thumbnail, the loss of quality isn't noticable.
+var thumbnail = image.GetThumbnailImage(80, (image.Height*80/image.Width), null, new IntPtr(0));
+var streamThumbnail = new System.IO.MemoryStream();
+ 
+thumbnail.Save(streamThumbnail, jpgEncoder, encodingParameters);
+ _event.ThumbnailPicture = streamThumbnail.ToArray();
+ 
+// Good boy's tidy-up after themselves! :O
+originalImage.Dispose();
+newImage.Dispose();
+thumbnail.Dispose();
+streamLarge.Dispose();
+streamThumbnail.Dispose();</code></pre>

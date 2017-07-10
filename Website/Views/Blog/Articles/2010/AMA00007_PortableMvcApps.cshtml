@@ -1,0 +1,106 @@
+<p>
+    ASP.NET MVC is awesome
+    (<a href="http://weblogs.asp.net/scottgu/archive/2009/03/10/free-asp-net-mvc-ebook-tutorial.aspx" target="_blank">find out how awesome it is over dinner</a>)
+    and allows for some great applications to be made, quickly, while at the same time offering a high
+    degree of maintainability over the code that is written. The danger with being able to do things too
+    fast is that simple mistakes are sometimes made. These hopefully are nothing major, but can become
+    an irritation at various points down the line. One of the things that occasionally gets left behind
+    is the portability of code - and this can be a bit of a 'damn I wish I'd done it like that to start
+    with' moment.
+</p>
+
+<p>Below are a few hints that may (or may not) help you as you develop the next great slice of awesomeness.</p>
+
+<p>
+    Disclaimer: These tips are displayed as ASP.NET MVC tips, but in reality, some of them progress to
+    general ASP.NET Websites and Applications - or just websites in general.
+</p>
+
+<h3>Don't Assume You Know Your Root</h3>
+<p>Before I get started, let me give some background on this point. I have recently been doing some final tweaks to an otherwise great MVC application. However, one of the tweaks I did was to make sure that part of the system was securely done via HTTPS. When looking around the net, this appeared to be a lot trickier than I thought. After all, could all these people be wrong?:</p>
+<ul>
+    <li>Dan Wahlin's blog on: <a href="http://weblogs.asp.net/dwahlin/archive/2009/08/25/requiring-ssl-for-asp-net-mvc-controllers.aspx" target="_blank"></a>Requiring SSL for ASP.NET MVC Controllers</a></li>
+    <li>Adam Salvo on: <a href="http://blog.salvoz.com/2009/03/14/PartialSSLAndAuthorizationWithAspNetMVC.aspx" target="_blank">Partial SSL and Authorization with ASP.NET MVC</a></li>
+    <li>Troy Goode's article on: <a href="http://www.squaredroot.com/post/2008/06/11/MVC-and-SSL.aspx" target="_blank"></a>SSL Links/URLS in MVC</a></li>
+</ul>
+
+<p>
+    Basically, yes they can, but only because their articles are dated, not because they are fools
+    (it should also be noted that although their articles may be dated, there are some good techniques
+    and ideas in them, so worth a nosey). :)
+    <a href="http://bartwullems.blogspot.com/2010/01/using-ssl-with-aspnet-mvc-2.html" target="_blank">
+        Bart
+        Wullems does a good job of explaining the amazing simplicity
+    </a> of this new attribute that
+    was added in MVC 2 Preview 2. I'm a little surprised as to
+    how this maybe wasn't given a little bit more publicity - its a useful tool that was sorely missing
+    before. Behold, ye
+    <code><a href="http://msdn.microsoft.com/en-us/library/system.web.mvc.requirehttpsattribute%28VS.100%29.aspx">[RequiresHttps]</a></code>
+    attribute!
+</p>
+
+<p>
+    This addition of SSL feather to my MVC Application's bow was to prove too much for Visual Studio's
+    Cassini and I was forced onto my local IIS. This in itself wasn't a great issue, but it highlighted
+    some issues with the way the application had been developed. It had been assumed from the start that
+    the application would live at the root of its own domain. This is true for the production version of
+    the system and was for the large part true of the development system. When moving to IIS however,
+    the project was set to run as a Virtual Directory - meaning the website root was no longer the same
+    as the application root. Which lead me to trawl through the entire application tweaking things here
+    and there, just to make it work no matter where it lived. Don't assume you know were your application
+    will live! It might be any number of little requirement changes that could cause you to have to
+    rethink how you are building your application.
+</p>
+
+<h3>Use ActionLinks for linking within your application</h3>
+<p>
+    Doing this will save you a bunch of time and is one of the core supported features of ASP.NET MVC,
+    so why not use it when it's so simple? There are so many good articles and posts on this, a great
+    starting point is (as always) ScottGu's, which part way down talks about
+    <a href="http://weblogs.asp.net/scottgu/archive/2007/12/03/asp-net-mvc-framework-part-2-url-routing.aspx">
+        Constructing Outgoing URLs from the Routing System
+    </a>
+</p>
+
+<pre><code class="csharp"><%=Html.ActionLink("View more details", new { Controller = "Products", Action = "Details", Id=42 })%></code></pre>
+
+<h3>Url.Content for content that is URLs</h3>
+<p>Url.Content is to static content, what ActionLink is to your dynamic pages. If you have any Images, 
+    CSS, Script files or basically anything else that isn't an MVC page, then this little beaut' is 
+    for you! This allows you to negate any issues with website roots and application roots changing - 
+    without having to monitor and check any links!</p>
+
+<p>Before, you may simply have done:</p>
+<pre><code class="html">&lt;img src="/lolcats/longcat.png" alt="To scale" /&gt;</code></pre>
+
+<p>This would have worked until your application was moved from the webroot (Cassini) to a virtual
+    directory (e.g. "/MVCApp" in IIS). If you do the following however, all is solved as it works 
+    out the URL and writes that out accordingly:</p>
+<pre><code class="html">&lt;img src="&lt;%=Url.Content("~/lolcats/longcat.png")%&gt;" alt="To scale" /&gt;</code></pre>
+
+<p>Would appear as the below, automagically:</p>
+<pre><code class="html">&lt;img src="/MVCApp/lolcats/longcat.png" alt="To scale" /&gt;</code></pre>
+
+<h3>Relative links within your CSS</h3>
+<p>This is something that isn't specifically unique to MVC applications or ASP.NET in general. It's 
+    more a good practice / make sure you are aware of guideline. When coding stylesheets, you're often faced 
+    with wanted to add background-image's to them. Without the server-side jiggery pokery that ASP.NET (and
+    the like) allows, you are left with limited choices how to do this. But in reality, the solution is 
+    fairly simple. You need to fix two things: The location of your Images and the location of your CSS.
+    It doesn't really matter where they are, but just that they are fixed (or you have the patience to
+    correct your links should you wish to restructure).</p>
+
+<p>Images from a CSS can be HTTP, absolute to the web-root or, as is awesome, relative to the CSS itself.
+    This means that as long as all your styles are entirely located within your stylesheet's and not 
+    intermingled with your code, you're on to a winner. It doesn't matter which page calls the CSS, 
+    whether it be your homepage or one that is 42 levels deep - the links are only ever relative to the
+    CSS page (which you included via Url.Content, right, eh? yeah!?).</p>
+
+<p>In the following example, the CSS is located within a 'Styles' directory directly at the project root.</p>
+
+<pre><code class="css">.longCat
+{
+ background-image: url('../lolcats/longcat.png');
+}</code></pre>
+
+<p>Hopefully these pointers will help someone else, if not, they will hopefully protect against my own stupidity and making similar mistakes again. Feel free to comment below if there are any more thoughts and portability ideas you think I could do with including.</p>

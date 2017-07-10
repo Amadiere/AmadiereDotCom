@@ -1,0 +1,136 @@
+
+<p>Cake mix:</p>
+<p>
+    400g of Visual Studio 2008<br />
+    100g of fresh Subversion<br />
+    1tsp of VisualSVN (1tsp of AnkhSVN subsitutes if you can't get hold of any).<br />
+    Instructions: Put into a large bowl and beat the living-poop out of it with a spike covered hammer.
+</p>
+<p>Or alternatively&#8230;.</p>
+<p>I've been quite frustrated that no matter where I looked on the web, what I searched for, which search engine I used - all the articles I found on <strong>opening multiple projects in Visual Studio (while still using Subversion)</strong>, all seemed to explain only a portion of what was needed and never the full tale. So being frustrated, I decided it's the exact type of thing I needed to note here - even if it's just me that ever reads it!</p>
+<p><strong>The Scenario:</strong></p>
+<p>I have a Visual Studio solution with two projects in it: <strong>Project01</strong> which is an MVC Web Application and the associated Project01.Tests project for testing. As I want to apply to DRY principles, I created<strong> another solution</strong> with a Class <strong>Library</strong> project (and associated test project) for putting any code that might be used again outside of the scope of the current project. This causes a couple of pickles:</p>
+<ul>
+    <li>Visual Studio doesn't let you open more than one solution, so I'm forced to chose between Project01 and Libraries (which is hardly perfect).</li>
+    <li>Moving the Libraries projects within the Project01 Solution causes Subversion to get confused and causes a coupling of the code that would be difficult when Project02 came along.</li>
+</ul>
+<p>
+    I read that svn:externals was the way to go - but I didn't understand how exactly to go about this.
+    Sometimes the guides weren't clear on how to apply the svn:externals but almost always, they weren't
+    specifically detailing how to get the setup I wanted within Visual Studio.
+</p>
+
+<p><strong>The Solution:</strong></p>
+<p>
+    People were right! svn:externals is definitely the way forward, but there are a few things that need to
+    be done to get the (seemingly) perfect setup.
+</p>
+
+<p>A few notes before we start:</p>
+<ul>
+    <li>
+        My example below includes Tests projects, these are of great value but not needed as far as this
+        example goes (obviously).
+    </li>
+    <li>
+        The Screenshots are for AnkhSVN, but the scenario works with VisualSVN. Where the stage differs,
+        I'll endevour to explain the differences where appropriate.
+    </li>
+    <li>
+        This is my current setup and I haven't run into any issues with it. However, by following
+        this guide you are aware that I'm occasionally wrong and that gremlins may eat your data if you
+        don't ensure that everything is working as it should.
+    </li>
+    <li>
+        My working setups are Visual Studio 2008, VisualSVN Server 1.7.2 (which includes Subversion 1.6.2),
+        TortoiseSVN and VisualSVN or AnkhSVN. Tested on Windows 7 and Windows XP.
+    </li>
+    <li>
+        I'm going to suggest using the standard trunk, tags and branches layout within a repository
+        - but you'd prefer not to it should be easy to customise.
+    </li>
+</ul>
+<h3>The Steps</h3>
+<ol>
+    <li>
+        You may already have this step done if you are working from an existing code base, but I started
+        with two seperate solutions; Project01 (my application) and Libraries (my shared resource).
+    </li>
+    <li>
+        Add both solutions to Subversion however you normally do it. For example, in AnkhSVN you right-click
+        the <strong>solution </strong>and select "Add Solution To Subversion" and fill in
+        the following pop-up box similar to below.
+        <img title="Add Solution to Subversion (AnkhSVN)"
+             src="http://amadiere.com/blog/wp-content/uploads/2009/06/svnexternals_addsolutiontosvn.png"
+             alt="Add both solutions to your SVN repository however you want."
+             width="558" height="600" />
+        <p>Add both solutions to your SVN repository however you want.</p>
+    </li>
+    <li>After adding each of the solutions, you should make sure that you "Commit" to update the server's version of the files.</li>
+    <li>
+        Your repository should look something like the following:
+
+        <pre>/svnrepository
+    /Project01
+        /trunk
+            /Project01
+            /Project01.Tests
+    /Libraries
+        /trunk
+            /Libraries
+            /Libraries.Tests</pre>
+    </li>
+    <li>Ok, you can close Visual Studio 2008 (not sure if you need to, but I feel safer doing so).</li>
+    <li>
+        Open your repository browser. (e.g, right clicking on a file in Windows Explorer -&gt; TortoiseSVN
+        -&gt; repo-browser.
+        <img title="Repository Browser" src="http://amadiere.com/blog/wp-content/uploads/2009/06/svnexternals_repositorybrowser.png" alt="Your repository should look something like this now." width="696" height="490" />
+        Your repository should look something like this now.
+    </li>
+    <li>Right click on the trunk of Project01 and click "Show Properties".</li>
+    <li>
+        A list of properties (possibly including svn:ignore are shown. Click "New"<br />
+        <img title="SVN Properties" src="http://amadiere.com/blog/wp-content/uploads/2009/06/svnexternals_properties.png" alt="SVN Properties" width="582" height="296" />
+    </li>
+    <li>
+        Within the "New Properties" window, you want to add "svn:externals" to the top right drop down box
+        (this may not already be in the list - don't be detered). Within the main box, you want to put the name
+        of the directory within your Project01 you want to create, followed by the URL to the repository with
+        the code you want to fill it with : e.g:
+<pre>Libraries        http://svn.codespaces.com/amadiere/aspnet/Libraries/trunk/Libraries/
+Libraries.Tests  http://svn.codespaces.com/amadiere/aspnet/Libraries/trunk/Libraries.Tests/</pre>
+
+        <img title="Add new property" src="http://amadiere.com/blog/wp-content/uploads/2009/06/svnexternals_addproperties.png" alt="Don't forget to type &quot;svn:externals&quot; into the top right hand box." width="577" height="314" /><p class="wp-caption-text">
+        <p>Don&#39;t forget to type &quot;svn:externals&quot; into the top right hand box.</p>
+    </li>
+    <li>Reopen Visual Studio and your Project01 Solution.</li>
+    <li>
+        Right click the Solution name and "Update" to the latest version. You should see it add the External
+        Library project in the text that flies past. This is basically the main part finished, but
+        you'll spot the two Libraries projects are not visible within our solution still...
+    </li>
+    <li>
+        Right click again on the Solution name and add an "Existing Project". Navigate to your Project01
+        directory and you should spot there are now 4 project directories with two of them being your
+        Libraries projects! Simply go into them and add them one at a time.
+        <img title="Add Existing Project" src="http://amadiere.com/blog/wp-content/uploads/2009/06/svnexternals_addexistingproject.png" alt="Adding an existing project in Visual Studio" width="641" height="514" />
+        <p>Adding an existing project in Visual Studio</p>
+    </li>
+    <li>Commit your changes and you're done!</li>
+</ol>
+<p><strong>Testing Your Setup</strong></p>
+<p>
+    You should be able to test your project by making changes etc to both sets of project files and
+    committing them to your database. What should happen is your Project01 files will go to the
+    Project01 directory in your repository and the Libraries files will still (dispite being in
+    your Project01 solution on your development machine) be committed to the Libraries solution
+    directory in your repository.
+</p>
+<p>
+    This setup should work for Project02 as well. Just repeat the appopriate steps and bang! - you
+    have a fully working second project using the same Libraries!
+</p>
+<p>
+    If anyone runs into any dramatic side effects or knows of any issues with this methodology, I'd
+    be very interested in hearing them as I'm currently on Cloud 9 with it!
+</p>

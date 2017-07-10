@@ -1,8 +1,3 @@
-@{
-    ViewData["Title"] = "AMA00001_AspNetMvc3DropdownLists";
-    Layout = "~/Views/Shared/_BaseLayout.cshtml";
-}
-
 <p>
     I've recently experimented a little bit with some of the new unobtrusive JavaScript stuff that 
     is now included as part of the default ASP.NET MVC 3 project template. While not an overly complex 
@@ -182,10 +177,9 @@ namespace UnobtrusiveAjaxExample.ViewModels.BlackCoffee
 
 <p>You should be able to see there that there is AjaxOptions class "newed up" directly in the view. If you're
     uncomfortable with doing this, you could create it directly in the view model and pass it in from there.
-    There are a ton of options that you can go into, most of which are touched upon on Brad Wilson's blog post
-    on this subject (if you haven't read Brad Wilson's blog, you probably should add it to your reader - it's
-    exceptional and includes a good chuck of stuff relating to ASP.NET MVC and related topics). You'll also
-    spot we provide a UpdateTargetId - this represents the HTML element into which all the view result is going
+    There are a ton of options that you can go into, most of which are touched upon on 
+    <a href="http://bradwilson.typepad.com/blog/2010/10/mvc3-unobtrusive-ajax.html">Brad Wilson's blog post</a>
+    on this subject. You'll also spot we provide a UpdateTargetId - this represents the HTML element into which all the view result is going
     to get dumped into. In this case, our DIV on our Rocks.cshtml page - but this could be anything and in fact
     nothing, if you don't want to spew out content back to the user for whatever reason.</p>
 
@@ -221,7 +215,7 @@ public ActionResult Rocks(RocksViewModel viewModel)
         instances you want to do more than simply "add some HTML to a div". However, two things to note regarding
         these function calls:
         <ul>
-            <li>The functions you declare should not live inside of the JQuery document.ready() method or other 
+            <li>The functions you declare should not <strong>live</strong> inside of the JQuery document.ready() method or other 
                 shorthand notation for that. Just plain functions in a .js file is fine (though, you can of course, 
                 still use JQuery - that's not a problem).</li>
             <li>You might find that the $(this) object within the JavaScript is not populated by the time you get 

@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\AboutMe\" />
+    <Folder Include="Views\Blog\Articles\2010\" />
+    <Folder Include="Views\Blog\Articles\2009\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
   <ItemGroup>

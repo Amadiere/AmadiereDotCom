@@ -1,0 +1,40 @@
+<p>
+    One of the systems within my workplace is a PHP5 application (via Apache on Windows) that uses MySQL5.0
+    as its main database. However, in addition to this, it has a requirement to an old Microsoft SQL7 Server
+    which was running Windows NT. This machine gave up the ghost and was restored to a SQL2000 machine and
+    it began to work again.
+</p>
+
+<p>Except from the blasted PHP application mentioned above ! The swine!</p>
+<p>So, after digging around and debugging and limiting down the dependencies that it could be, we established that:</p>
+<ul>
+    <li>It wasn't MDB2 which we are using to abstract the DB connections, as mssql_connect would fail also.</li>
+    <li>
+        It wasn't a change in DB name, Server name, user, password or permissions as we could connect with
+        identical criteria from elsewhere.
+    </li>
+    <li>
+        It wasn't a networking error, as Query Express was able to connect when ran from the web-server
+        itself.
+    </li>
+    <li>
+        It wasn't remembering anything about the old server as we reset the Apache instances and rebooted
+        the entire box to see if it would help.
+    </li>
+    <li>
+        It wasn't the code, as we had EXACTLY the same code running against the live system from our
+        development server and it didn't even bat an eyelid.
+    </li>
+</ul>
+<p>Eventually, we happened across a few posts that eluded to the fact that PHP5 ships with a DLL of suckiness.</p>
+<p>
+    The difference between the live Apache web server, compared with the development machine was that
+    MSSQL2000 was actually installed on the development one (along with a bunch of other crap). Because
+    this install is in place, it meant that in C:\Windows\System32 was a working and newer copy of ntwdblib.dll .
+</p>
+<p>
+    The bottom line is that the fix is simply to replace the old version of ntwdblib.dll (which comes
+    with PHP5, noted as version: 2000.8.2.0) and replace it with version 2000.80.194.0 Once we started
+    the Apache instances again - BOOM! Amazingness reborn! Our web-servers could see SQL 2000 instances
+    again! Fantastic!
+</p>
