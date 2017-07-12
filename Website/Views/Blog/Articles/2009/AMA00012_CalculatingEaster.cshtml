@@ -1,0 +1,102 @@
+<p>Every now and then, something really complex comes along and the answer is there on Google. A bit back now, I was asked to create a file for 
+    import into the organisations payroll system. The tricky thing was that this had to be an automated procedure that knew the date on which we
+    would be paid.</p>
+<p>The rule of thumb is fairly simple: We get paid on the 15th of the month. If this day happens to be a Saturday or Sunday - then it should 
+    be the preceding Friday. So sometimes, the 13th or 14th maybe. Bank Holidays? Most bank holidays avoid the 15th of the month without a
+    problem - the exception is Easter. Easter is based on the lunisolar calendar. I had a quick Google, but alas, the Moon didn't have a web-service, 
+    so I was gonna have to do this the hard way!</p>
+<p>Having a <a href="http://en.wikipedia.org/wiki/Easter#Date_of_Easter">quick read up about the subject</a> reveals a wealth of complications where,
+    between them, the Gregorian calendar and Christianity just about mess everything up for everyone! Unthoughtful, I agree. But the general rule
+    of thumb is:</p>
+
+<blockquote>
+    <p>Easter and the holidays that are related to it are moveable feasts, in that they do not fall on a fixed date in the Gregorian or Julian
+        calendars (both of which follow the cycle of the sun and the seasons). Instead, the date for Easter is determined on a lunisolar calendar,
+    as is the Hebrew calendar.</p>
+    <p>In Western Christianity, using the Gregorian calendar, Easter always falls on a Sunday between March 22 and April 25 inclusively.[36] The
+        following day, Easter Monday, is a legal holiday in many countries with predominantly Christian traditions. In Eastern Christianity, which 
+        use the Julian calendar for religious dating, Easter also falls on a Sunday between March 22 and April 25 inclusive of the Julian calendar. In 
+        terms of the Gregorian calendar, due to the 13 day difference between the calendars between 1900 and 2099, these dates are between April 4 and 
+    May 8 inclusive.</p>
+</blockquote>
+
+<p>
+    I could have settled for programming the relevant <a href="http://users.sa.chariot.net.au/~gmarts/eastcalc.htm">dates for the next 40 years</a>, 
+    but somehow, that didn't sit comfortably with me. The link I had back then that helped me work it out no longer exists, however, the basic 
+    premise is as follows.
+</p>
+
+<p>To work out the date of Easter Sunday, there is some mathematical algorithms to it after all! (Praise be to science!)</p>
+
+<p>These are the original comments, which are well written and I shan't be able to improve upon much:</p>
+
+<blockquote>
+    <p>First work out "epact": the approximate date of the Paschal moon. The number is the approximate number of days before April 19 that a full 
+        moon will occur. The number increases by 11 each year because 365 days is equal to 12 lunar cycles of 29.5 days plus 11 days. The 2 is an arbitrary 
+    start point based on the state of the moon when they worked out this algorithm is 1582.</p>
+    <p>"a" and "b" are corrections based on the current century.</p>
+    <p>The formula was based on the simpler one in use with the Julian calendar, so the first correction is just to make it work with the Gregorian 
+    calendar. It is essentially the "missing" leap days in the Gregorian calendar for 1700, 1800, etc, which is 15 for years 1900-2099.</p>
+    <p>The second correction improves the 19 years = 235 moons approximation.</p>
+    <p>Then the whole sum is reduced mod 30 to give us the age of the moon in days on April 5th (14 = full)</p>
+    <p>And a last correction is made in case either the epact is 0 (which would push the date of the moon later than the set limit of 18 April) or 
+        it is 1 AND we are in the second half of the 19 year cycle (because that means the previous correction was made already in this cycle but we
+    don't want to repeat it) In either case we just bump it on 1 because e=2 cannot happen.</p>
+</blockquote>
+
+<p>Genius! There was a wonderful example function written in a language which wasn't much use to me, so I converted into a VB Script function that 
+    could be called by my script. While the following is written for Classic ASP / VBScript, there is no reason why it can't be easily turned back 
+    into PHP, Java, or a VB or C#.NET function.</p>
+
+<pre><code class="vbscript">Function EasterMonday(iYear)
+ 
+  Dim iMonth, iDay, iMoon, iEpact, iSunDay, iGold, iCent, iCorx, iCorz
+ 
+  If IsNumeric (iYear) Then
+    iYear = CInt(iYear)
+ 
+    If (iYear &gt;= 1583) And (iYear &lt;= 8702) Then
+      iGold = ((iYear Mod 19) + 1) 'the golden number of the year in the 19 year metonic cycle
+      iCent = ((Int(iYear / 100)) + 1) 'calculate the century
+      iCorx = (Int((3 * iCent) / 4) - 12) 'no. of years in which leap year was dropped in order to keep in step with the sun
+      iCorz = (Int((8 * iCent + 5) / 25) - 5) 'special correction to syncronize easter with the moon's orbit
+      iSunDay = (Int((5 * iYear) / 4) - iCorx - 10) 'find sunday
+      iEpact = ((11 * iGold + 20 + iCorz - iCorx) Mod 30) 'set epact (specifies occurance of full moon
+
+      If (iEpact &lt; 0) Then
+        iEpact = iEpact + 30
+      End If
+ 
+      If ((iEpact = 25) And (iGold &gt; 11)) Or (iEpact = 24) Then
+        iEpact = iEpact + 1
+      End If
+ 
+      iMoon = 44 - iEpact 'Find Full Moon
+
+      If (iMoon &lt; 21) Then
+        iMoon = iMoon + 30
+      End If
+ 
+      iMoon = (iMoon + 7 - ((iSunDay + iMoon) Mod 7)) 'advance to sunday
+
+      If (iMoon &gt; 31) Then
+        iMonth = 4
+        iDay = (iMoon - 31)
+      Else
+        iMonth = 3
+        iDay = iMoon
+      End If
+ 
+      EasterSunday = DateSerial(iYear, iMonth, iDay)
+    Else
+      EasterSunday = False
+    End If
+  Else
+    EasterSunday = False
+  End If
+End Function</code></pre>
+
+<p>I'm always amazed by things like this. What initially seemed to me to be an overwhelming task, was solved by a small amount of code. What I
+    thought was entirely based about the moon and how it felt like eclipsing every now and then, can actually be solved by mathematical equations!</p>
+<p>I'd think about chalking this up as another victory for science over religion. However, I'm not entirely convinced that science and the stupidity
+    of man didn't pay part in the confusion in the first place. So I'll just leave that potentially controversial debate for another time.</p>

@@ -1,0 +1,72 @@
+<p>
+    A bit back, I was looking into database replication and specifically, two-way replication. Meaning that either server could be
+    updated and it would replicate any changes to it's nice neighbour. <a href="http://msdn.microsoft.com/en-us/library/ms151198.aspx">Microsoft SQL</a>
+    offer a solution - but it was way out of our price-range. So, we looked into the world of MySQL and at the time, the sparkly and new MySQL 5.0.
+</p>
+<p>
+    MySQL offer quite a bit of <a href="http://dev.mysql.com/doc/refman/5.0/en/replication.html">useful documentation on replication</a> in general,
+    but for our requirement of Master to Master connections, it
+    <a href="http://dev.mysql.com/doc/refman/5.0/en/replication-faq.html#qandaitem-16-3-4-1-5">offered the wonderful barley's</a> of:
+</p>
+<blockquote>
+    <p>
+        MySQL replication currently does not support any locking protocol between master and slave to guarantee the atomicity of a distributed
+        (cross-server) update. In other words, it is possible for client A to make an update to co-master 1, and in the meantime, before it propagates
+        to co-master 2, client B could make an update to co-master 2 that makes the update of client A work differently than it did on co-master 1.
+        Thus, when the update of client A makes it to co-master 2, it produces tables that are different from what you have on co-master 1, even after
+        all the updates from co-master 2 have also propagated. This means that you should not chain two servers together in a two-way replication
+        relationship unless you are sure that your updates can safely happen in any order, or unless you take care of miss-ordered updates somehow in
+        the client code.
+    </p>
+    <p>
+        You should also realize that two-way replication actually <strong>does not improve performance very much</strong> (if at all) as far as updates
+        are concerned. Each server must do the same number of updates, just as you would have a single server do. The only difference is that there is a
+        little less lock contention, because the updates originating on another server are serialized in one slave thread. Even this benefit might be offset
+        by network delays.
+    </p>
+</blockquote>
+
+<p>
+    This offers some good advice and you really do need to understand exactly what you are doing before you can continue down this path. But
+    suppose that <strong>it doesn't really matter what order things happen, as long as they happen consistently across all servers</strong>,
+    what are we to do then to get it all working? Well, enhancing and copying from my
+    <a href="http://stackoverflow.com/questions/325791/which-is-the-best-way-to-bi-directionally-synchronize-dynamic-data-in-real-time-u/">response to a question on the awesome Stack Overflow</a>,
+    here is what I'd do.
+</p>
+
+<p>
+    The first major problem that you must overcome, is that when a new incremental seed is created, it's normally created 1, 2, 3, 4, 5
+    (the glorious one times table). However, this will be no good if the theoretical two-inserts-at-once-on-different-boxes happens. It would
+    great two number 4's. A BIG data-integrity issue. This is solved simply however, by simply providing a seed which equals the total number
+    of masters you would have. So, in my case (and maybe most), there would be two Masters, one would be counting evens, and the other ones odd.
+    2,4,6,8 and 1,3,5,7. Following this logic there can be no duplicates. It does create the OCD-Offensive side-effect that there are numbers that
+    are never used - but that doesn't really matter a great deal as far as things go. In addition, you should ensure both your server_id's are
+    different (two MySQL servers with the same name in replication has distinct disadvantage to the other setups (it doesn't work) - but that's
+    standard replication setup anyway.
+</p>
+
+<div>Master MySQL 1:</div>
+<pre><code class="sql">auto_increment_increment = 2
+auto_increment_offset = 1</code></pre>
+
+<div>Master MySQL 2:</div>
+<pre><code class="sql">auto_increment_increment = 2
+auto_increment_offset = 2</code></pre>
+
+<p>
+    Using all the functionality and commands of the standard MySQL replication, you should then be able to start both servers up as slaves of
+    the other one. Then to check both are working OK, connect to both machines and perform the command SHOW SLAVE STATUS and you should note that
+    bothSlave_IO_Running and Slave_SQL_Running should both say "YES" on each box.
+</p>
+
+<p>
+    When creating your code to connect to the database servers, you want to send to both boxes equally? Or maybe favour one because it's a bit
+    beefier? You could add in death-checks to make sure a server is still serving queries and allowing connections - and if its not, use the
+    other one.
+</p>
+
+<p>
+    All being told, I really like this solution for replication. For the fuller picture, you'd obviously add a slave somewhere that is remotely
+    connected periodically (or all the time) and allowed to update. It acts as an off-site backup should your building be compromised (burns to
+    the ground in a huge inferno-type-mess scenario. For example).
+</p>

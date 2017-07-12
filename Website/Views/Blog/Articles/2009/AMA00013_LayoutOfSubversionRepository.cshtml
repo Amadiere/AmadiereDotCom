@@ -1,0 +1,83 @@
+<p>
+    In and amongst other things recently, I've been working on sorting out a replacement for Microsoft SourceSafe / nothing at all. I've done
+    my research and I believe Subversion an excellent starting place for using version control and will probably keep most, if not all developers
+    happy. If distributed (and GIT) turns out to be too much of an advantage to ignore - the fact that Subversion is such a mature and well used
+    product, there will always be an upgrade path.
+</p>
+<p>
+    I'll try not to go into too much detail, as there are plenty of useful resources dotted around that you can find information from. However,
+    before I go onto the directory layout of our repository, I feel I should mention the hardware and software layout of Subversion itself in
+    our environment. Where I work, we are migrating from our historically used Classic ASP code to using C# in ASP.NET, though we have some
+    systems using PHP too. I mention this because we want to be able to use Subversion to look after all code - not just one specific language.
+</p>
+
+<p>
+    <strong>Server Software</strong>: In my opinion, I believe you need both Subversion and Apache HTTP for an optimal setup. As we have an Active Directory server
+    as well, it seemed like a good idea to use this rather than create further usernames and passwords for all our developers. For this, you can
+    download and configure everything manually (after all, there is an excellent resource in the free eBook on Subversion) - but actually - you
+    might as well just download the excellent VisualSVN Server. It takes almost all the hardwork out of creating the Subversion server. It's
+    truely a brilliant piece of kit and if you are new to Subversion, I'd advise using this (or at least having a nosey at it and seeing how it
+    does things - if you're that way inclined). It's possibly worth me mentioning that all these applications have the most agreeable price-tag
+    of absolutely nothing at all. Woo!
+</p>
+<p>
+    <strong>Client Software</strong>: For this, every developer wanting to use Subversion must install TortoiseSVN. TortoiseSVN is a great explorer based client
+    for Subversion that allows developers to perform standard (and advanced) commands from the safety of the right click context menus. This
+    works for all languages and files, but I'd advise for anyone working in Visual Studio, that downloading and paying $50 for VisualSVN is
+    money well spent. It doesn't require VisualSVN Server, but it gives you a way of utilising all the TortoiseSVN context menus from within
+    Visual Studio, meaning you needn't worry about mulitple windows and all that. Just concentrate on your coding! Also, because you have
+    installed VisualSVN (or Apache seperately) you can allow (authenticated) users to view the repository in their web browser of choice.
+</p>
+
+<p>
+    All this and we're almost up and running. But before we can continue, we need to sort out the structure. This is how I've suggested our
+    team uses it:
+</p>
+
+<pre>svn / aspnet  / libraries  / trunk
+                           / branches
+                           / tags
+              / project01  / trunk
+                           / branches
+                           / tags
+              / project02  / trunk
+                           / branches
+                           / tags
+              / users      / amadiere
+                           / user02
+</pre>
+
+<p>Basically speaking:</p>
+
+<ul>
+    <li>
+        <strong>Every language has it's own repository</strong>. There is no need to bring multiple languages into one repository, especially when the amount
+        of code for each language is sufficient to live in its own. I think there may be exceptions to this rule, but those can be taken on a
+        case by case basis.
+    </li>
+    <li>
+        <strong>Every language would have a 'libraries' directory</strong> (this is the equivalent to 'include' or whatever). Some things will obviously be
+        used multiple times, so it makes sense to keep them in a central area, this is nothing new. With everything being in one repository however,
+        it means moving something from Project01 to the libraries area will still keep all the history and version attached to it. This is a big
+        plus from where I'm sitting and is why I've gone for this layout.
+    </li>
+    <li>
+        <strong>Each library or project folder would have the standard 3 directories for trunks, branches and tags</strong>. There is plenty of advise and advantages
+        for this structure, most detailed in the SVN book. A project may involve further sub-project folders if it was relevant, before creating the
+        trunk, branches, tags folder structure. However, depending on the nature of the project, it might be better to create multiple top level
+        projects than sub projects with 'different trunks'.
+    </li>
+    <li>
+        <strong>Each user would have their own area</strong> (without the 3 standard directory structure). There isn't a need here for the trunks, branches and
+        tags because this area shouldn't be used for projects. This area should be used by developers to simply 'Sandbox' or test small bits of code
+        etc. There isn't an end product to need to branch. In the end, this code is the developers to work with - so I guess if they wanted the branches,
+        then they can go for it.
+    </li>
+</ul>
+
+<p>
+    I think with this format, we've got a good standing point for where we want to be going with Version Control and the ASP.NET environment.
+    I'm confident, but until we really start using it in anger - we'll never know! But the idea is then, when I want to develop something,
+    I open Visual Studio and a blank solution. I then add the projects that I'll need (e.g. Project01, Libraries and Amadiere) and off I go -
+    I have everything open I need and they are all going to their appropriate places in Subversion! Genius!
+</p>
