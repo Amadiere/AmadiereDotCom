@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Amadiere.Blog;
 using Amadiere.Blog.Repositories;
 using Amadiere.Website.ViewModels.Blog;
@@ -18,7 +19,10 @@ namespace Amadiere.Website.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var viewModel = new IndexViewModel();
+            viewModel.Articles = Articles.GetMostRecent().Select(x => new BlogViewItem(x));
+
+            return View(viewModel);
         }
 
         public IActionResult Article(int? year, int? month, string slug)

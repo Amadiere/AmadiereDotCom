@@ -56,10 +56,45 @@ body.blog {
         margin-top: 2em;
     }
 
+    ul#content-list {
+        padding-top: 1em;
+        margin-left: 20px;
+        margin-right: 20px;
+        line-height: 1.35em;
+
+        @media only screen and (min-width: 1000px) {
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+
+        li.article {
+            list-style: none;
+            padding: 1em;
+            background-color: darken($main-background-color, 10);
+            margin-bottom: 0.5em;
+            @include rounded();
+
+            .date {
+                font-size: smaller;
+            }
+        }
+
+        ul.tag-list {
+            font-size: smaller;
+
+            li {
+                display: inline-block;
+                background-color: darken($main-background-color, 30);
+                padding:1px 5px;
+            }
+        }
+    }
+
     article {
         padding-top: 1em;
         margin-left: 20px;
         margin-right: 20px;
+        line-height: 1.35em;
 
         @media only screen and (min-width: 1000px) {
             margin-left: 100px;
@@ -81,6 +116,12 @@ body.blog {
 
         ul {
             margin-left: 2em;
+        }
+
+        blockquote {
+            border-left: 10px solid $primary-color;
+            background-color: lighten($primary-color, 68);
+            padding: 1em;
         }
     }
 }
