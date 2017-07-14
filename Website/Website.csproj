@@ -60,11 +60,6 @@
     <ProjectReference Include="..\Blog\Blog.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Update="Data\blog-articles.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
