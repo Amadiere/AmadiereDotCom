@@ -1,6 +1,8 @@
 @model Amadiere.Website.ViewModels.Blog.IndexViewModel
 @{
     ViewData["Title"] = "Blog";
+    ViewData["Description"] = "Amadiere.com by Alex Holt - A coding blog with a particular focus on .NET and Web Development";
+    ViewData["Canonical"] = Url.Action("Index", "Blog");
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
     ViewBag.BodyClasses = "blog blog-index";
 }

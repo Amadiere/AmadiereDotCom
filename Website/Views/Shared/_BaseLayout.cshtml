@@ -8,16 +8,14 @@
     <meta name="title" content="@ViewData["Title"] | Amadiere.com" />
     <meta name="author" content="Alex Holt" />
     <meta name="keywords" content="amadiere, coding, .net, core, asp.net, mvc, c#, alex, holt, software, development, programming" />
-    <meta name="description" content="Alex Holt at Amadiere.com on coding in .NET, other languages & related topics" />
-    
+    <meta name="description" content="@ViewData["Description"]" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@@amadiere" />
     <meta name="twitter:creator" content="@@amadiere" />
     <meta name="twitter:title" content="@ViewData["Title"]" />
-    <meta name="twitter:image" content="http://www.amadiere.com/images/cool-alex.jpg" />
-
+    <meta name="twitter:image" content="http://www.amadiere.com/images/cool-alex.jpg" />
+    <link rel="canonical" href="@ViewData["Canonical"]" />
     <title>@ViewData["Title"] | Amadiere.com</title>
-
     <environment names="Development">
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>

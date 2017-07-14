@@ -11,6 +11,7 @@ namespace Amadiere.Blog.Model
         public string Slug { get; set; }
         public int? Year { get; set; }
         public int? Month { get; set; }
+        public string Description { get; set; }
 
         public IEnumerable<string> Tags { get; set; }
 

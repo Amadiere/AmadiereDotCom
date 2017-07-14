@@ -1,6 +1,9 @@
+@using Microsoft.AspNetCore.Routing
 @model Amadiere.Website.ViewModels.Blog.ArticleViewModel
 @{
     ViewData["Title"] = Model.Article.Title;
+    ViewData["Description"] = Model.Article.Description;
+    ViewData["Canonical"] = Url.Action("Article", "Blog", new {year = Model.Article.Year, month = Model.Article.Month, slug = Model.Article.Slug});
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
     ViewBag.BodyClasses = "blog";
 }
