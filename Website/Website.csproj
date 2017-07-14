@@ -9,27 +9,6 @@
     <AssemblyName>Amadiere.Website</AssemblyName>
     <RootNamespace>Amadiere.Website</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="wwwroot\css\highlight\atom-one-dark.css" />
-    <Content Include="wwwroot\css\highlight\atom-one-light.css" />
-    <Content Include="wwwroot\css\highlight\github-gist.css" />
-    <Content Include="wwwroot\css\highlight\github.css" />
-    <Content Include="wwwroot\css\modules\_blog.scss" />
-    <Content Include="wwwroot\css\modules\_homepage.scss" />
-    <Content Include="wwwroot\css\modules\_my-name-is.scss" />
-    <Content Include="wwwroot\css\modules\_aboutme.scss" />
-    <Content Include="wwwroot\css\partials\_boxes.scss" />
-    <Content Include="wwwroot\css\partials\_buttons.scss" />
-    <Content Include="wwwroot\css\Site.scss" />
-    <Content Include="wwwroot\css\_base.scss" />
-    <Content Include="wwwroot\images\cool-alex.jpg" />
-    <Content Include="wwwroot\images\icons\coffee-mug.svg" />
-    <Content Include="wwwroot\images\icons\glass-shot.svg" />
-    <Content Include="wwwroot\images\icons\meeple.svg" />
-    <Content Include="wwwroot\images\icons\rolling-dices.svg" />
-    <Content Include="wwwroot\js\highlight.min.js" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
@@ -44,12 +23,6 @@
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\AboutMe\" />
-    <Folder Include="Views\Blog\Articles\2010\" />
-    <Folder Include="Views\Blog\Articles\2009\" />
-    <Folder Include="wwwroot\lib\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\blog-articles.json">
