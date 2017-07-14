@@ -284,9 +284,10 @@ body.blog header {
       /*border-right: 5px solid $primary-color;*/ }
 
 body.blog footer {
-  background-color: #989898;
+  background-color: #cbcbcb;
   padding: 2em 100px;
-  margin-top: 2em; }
+  margin-top: 2em;
+  text-align: center; }
 
 @media only screen and (min-width: 1000px) {
   body.blog.blog-index nav {

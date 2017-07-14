@@ -51,9 +51,10 @@ body.blog {
     }
 
     footer {
-        background-color: darken($main-background-color, 30);
+        background-color: darken($main-background-color, 10);
         padding: 2em 100px;
         margin-top: 2em;
+        text-align: center;
     }
 
 
