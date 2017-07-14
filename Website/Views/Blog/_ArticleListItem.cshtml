@@ -3,11 +3,4 @@
 <div>
     <h3><a asp-controller="Blog" asp-action="Article" asp-route-month="@Model.Month" asp-route-year="@Model.Year" asp-route-slug="@Model.Slug">@Html.DisplayFor(x => x.Title)</a></h3>
     <div class="date">Published on: @Model.PublishedOn?.ToString("F") by <strong>Alex Holt</strong></div>
-    
-    <ul class="tag-list">
-        @foreach (string tag in Model.Tags)
-        {
-            <li>@tag</li>
-        }
-    </ul>
 </div>

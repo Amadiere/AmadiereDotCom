@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Blog";
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
-    ViewBag.BodyClasses = "blog";
+    ViewBag.BodyClasses = "blog blog-index";
 }
 
 <div class="logo-box">
@@ -12,12 +12,21 @@
     <h2>Amadiere's Blog</h2>
     <div>Content produced by me, Alex Holt. My opinions are my own.</div>
 </header>
-<ul id="content-list">
-    @foreach (var article in Model.Articles)
-    {
-        <li class="article">@Html.Partial("_ArticleListItem", article)</li>
-    }
-</ul>
+
+<article>
+    @Html.Partial($"Articles/{Model.Articles.First().Year}/{Model.Articles.First().ViewName}")
+</article>
+
+<nav>
+    <ul id="content-list">
+        <li class="article"><h2>Most recent Amadiere.com posts</h2></li>
+        @foreach (var article in Model.Articles)
+        {
+            <li class="article">@Html.Partial("_ArticleListItem", article)</li>
+        }
+    </ul>
+</nav>
+
 <footer>
     Thanks for reading this blog!
 </footer>

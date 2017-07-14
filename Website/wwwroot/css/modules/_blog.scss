@@ -8,7 +8,7 @@ pre code {
 }
 
 body.blog {
-    //border-top: 10px solid $primary-color;
+
     div.logo-box {
         padding-top: 1.5em;
         padding-bottom: 0.5em;
@@ -56,36 +56,50 @@ body.blog {
         margin-top: 2em;
     }
 
+
+    &.blog-index {
+        @media only screen and (min-width: 1000px) {
+
+            nav {
+                width: 30%;
+                min-width: 300px;
+                display: table-cell;
+                height: 100%;
+                vertical-align: top;
+            }
+
+            article {
+                width: 70%;
+                display: table-cell;
+                height: 100%;
+                vertical-align: top;
+                padding-left: 100px;
+            }
+        }
+    }
+
     ul#content-list {
-        padding-top: 1em;
+        h2 {
+            font-size: 15pt;
+            padding-left: 1em;
+        }
+
+        padding: 1em;
         margin-left: 20px;
         margin-right: 20px;
-        line-height: 1.35em;
+        background-color: darken($main-background-color, 10);
+        @include rounded();
 
         @media only screen and (min-width: 1000px) {
-            margin-left: 100px;
-            margin-right: 100px;
         }
 
         li.article {
             list-style: none;
-            padding: 1em;
-            background-color: darken($main-background-color, 10);
             margin-bottom: 0.5em;
-            @include rounded();
+            font-size: 10pt;
 
             .date {
                 font-size: smaller;
-            }
-        }
-
-        ul.tag-list {
-            font-size: smaller;
-
-            li {
-                display: inline-block;
-                background-color: darken($main-background-color, 30);
-                padding:1px 5px;
             }
         }
     }

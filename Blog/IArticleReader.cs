@@ -12,6 +12,6 @@ namespace Amadiere.Blog
         BlogArticle Get(int year, int month, string slug);
 
         IEnumerable<BlogArticle> GetAllByTag(string tag);
-        IEnumerable<BlogArticle> GetMostRecent();
+        IEnumerable<BlogArticle> GetMostRecent(int amount = 10);
     }
 }

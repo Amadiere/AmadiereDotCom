@@ -37,9 +37,9 @@ namespace Amadiere.Blog
             return GetAllActiveArticles().Where(x => x.Tags.Contains(tag));
         }
 
-        public IEnumerable<BlogArticle> GetMostRecent()
+        public IEnumerable<BlogArticle> GetMostRecent(int amount = 10)
         {
-            return GetAllActiveArticles().Take(5)
+            return GetAllActiveArticles().Take(amount)
                 .OrderByDescending(x => x.PublishedOn);
         }
     }

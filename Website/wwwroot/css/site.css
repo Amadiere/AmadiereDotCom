@@ -288,31 +288,37 @@ body.blog footer {
   padding: 2em 100px;
   margin-top: 2em; }
 
+@media only screen and (min-width: 1000px) {
+  body.blog.blog-index nav {
+    width: 30%;
+    min-width: 300px;
+    display: table-cell;
+    height: 100%;
+    vertical-align: top; }
+  body.blog.blog-index article {
+    width: 70%;
+    display: table-cell;
+    height: 100%;
+    vertical-align: top;
+    padding-left: 100px; } }
+
 body.blog ul#content-list {
-  padding-top: 1em;
+  padding: 1em;
   margin-left: 20px;
   margin-right: 20px;
-  line-height: 1.35em; }
-  @media only screen and (min-width: 1000px) {
-    body.blog ul#content-list {
-      margin-left: 100px;
-      margin-right: 100px; } }
+  background-color: #cbcbcb;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em; }
+  body.blog ul#content-list h2 {
+    font-size: 15pt;
+    padding-left: 1em; }
   body.blog ul#content-list li.article {
     list-style: none;
-    padding: 1em;
-    background-color: #cbcbcb;
     margin-bottom: 0.5em;
-    -webkit-border-radius: 0.5em;
-    -moz-border-radius: 0.5em;
-    border-radius: 0.5em; }
+    font-size: 10pt; }
     body.blog ul#content-list li.article .date {
       font-size: smaller; }
-  body.blog ul#content-list ul.tag-list {
-    font-size: smaller; }
-    body.blog ul#content-list ul.tag-list li {
-      display: inline-block;
-      background-color: #989898;
-      padding: 1px 5px; }
 
 body.blog article {
   padding-top: 1em;

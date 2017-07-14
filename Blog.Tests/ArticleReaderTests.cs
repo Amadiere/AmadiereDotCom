@@ -220,12 +220,32 @@ namespace Blog.Tests
         }
 
         [TestMethod]
-        public void GetMostRecent_Returns5()
+        public void GetMostRecent_ReturnsAmount()
+        {
+            // arrange
+            int amount = 7;
+            var articles = new ArticleListBuilder().Build().Object;
+            var mockRepo = new Mock<IBlogRepository>();
+            mockRepo.Setup(x => x.Articles).Returns(articles);
+
+            var articleReader = new ArticleReader(mockRepo.Object);
+
+            // act
+            var result = articleReader.GetMostRecent(amount);
+
+            // assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(amount, result.Count());
+        }
+
+        [TestMethod]
+        public void GetMostRecent_ReturnsLessThanAllArticlesByDefault()
         {
             // arrange
             var articles = new ArticleListBuilder().Build().Object;
             var mockRepo = new Mock<IBlogRepository>();
             mockRepo.Setup(x => x.Articles).Returns(articles);
+            int fullCount = articles.Count();
 
             var articleReader = new ArticleReader(mockRepo.Object);
 
@@ -234,8 +254,10 @@ namespace Blog.Tests
 
             // assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(5, result.Count());
+            Assert.AreNotEqual(fullCount, result.Count());
+            Assert.AreNotEqual(0, result.Count());
         }
+
 
         [TestMethod]
         public void GetMostRecent_ReturnsMostRecentlyPublishedFirst()
