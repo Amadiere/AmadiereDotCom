@@ -1,6 +1,6 @@
 @model Amadiere.Website.ViewModels.Blog.ArticleViewModel
 @{
-    ViewData["Title"] = "Article";
+    ViewData["Title"] = Model.Article.Title;
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
     ViewBag.BodyClasses = "blog";
 }
