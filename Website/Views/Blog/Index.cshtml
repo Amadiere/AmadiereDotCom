@@ -15,11 +15,7 @@
     <div>Content produced by me, Alex Holt. My opinions are my own.</div>
 </header>
 
-<article>
-    @Html.Partial($"Articles/{Model.Articles.First().Year}/{Model.Articles.First().ViewName}")
-</article>
-
-<nav>
+<div class="content">
     <ul id="content-list">
         <li class="article"><h2>Most recent Amadiere.com posts</h2></li>
         @foreach (var article in Model.Articles)
@@ -27,7 +23,16 @@
             <li class="article">@Html.Partial("_ArticleListItem", article)</li>
         }
     </ul>
-</nav>
+    
+    <div class="twitter-feed">
+        <a class="twitter-timeline" data-width="500" data-height="1000" data-theme="dark" data-link-color="#2B7BB9" href="https://twitter.com/Amadiere">Tweets by Amadiere</a>
+        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+</div>
+
+
+
+
 
 <footer>
     Amadiere.com
