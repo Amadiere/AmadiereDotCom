@@ -1,9 +1,8 @@
-@using Microsoft.AspNetCore.Routing
 @model Amadiere.Website.ViewModels.Blog.ArticleViewModel
 @{
     ViewData["Title"] = Model.Article.Title;
     ViewData["Description"] = Model.Article.Description;
-    ViewData["Canonical"] = Url.Action("Article", "Blog", new {year = Model.Article.Year, month = Model.Article.Month, slug = Model.Article.Slug});
+    ViewData["Canonical"] = Model.FullUrl;
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
     ViewBag.BodyClasses = "blog";
 }
@@ -28,8 +27,11 @@
     Thanks for reading this blog!
 </footer>
 
+@Html.Partial("_SocialMediaSharing", Model)
+
 @section BottomOfHead
 {
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/highlight/github.css" />
     <script type="text/javascript" src="/js/highlight.min.js"></script>
     <script type="text/javascript">

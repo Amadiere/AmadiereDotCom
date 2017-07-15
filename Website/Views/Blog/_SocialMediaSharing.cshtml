@@ -1,0 +1,22 @@
+﻿@model Amadiere.Website.ViewModels.Blog.ArticleViewModel
+
+<div class="social-media-buttons">
+    <a href="http://twitter.com/share?url=@Model.FullUrl&text=@Model.EncodedTitle&via=Amadiere" target="_blank" class="share-btn twitter">
+        <i class="fa fa-twitter"></i>
+    </a>
+    <a href="https://plus.google.com/share?url=@Model.FullUrl" target="_blank" class="share-btn google-plus">
+        <i class="fa fa-google-plus"></i>
+    </a>
+    <a href="http://www.facebook.com/sharer/sharer.php?u=@Model.FullUrl" target="_blank" class="share-btn facebook">
+        <i class="fa fa-facebook"></i>
+    </a>
+    <a href="http://reddit.com/submit?url=@Model.FullUrl&title=@Model.EncodedTitle" target="_blank" class="share-btn reddit">
+        <i class="fa fa-reddit"></i>
+    </a>
+    <a href="http://www.linkedin.com/shareArticle?url=@Model.FullUrl&title=@Model.EncodedTitle&summary=@Model.EncodedDescription&source=@Model.FullUrl" target="_blank" class="share-btn linkedin">
+        <i class="fa fa-linkedin"></i>
+    </a>
+    <a href="mailto:?subject=@Model.EncodedTitle&body=@Model.EncodedHattip" target="_blank" class="share-btn email">
+        <i class="fa fa-envelope"></i>
+    </a>
+</div>
