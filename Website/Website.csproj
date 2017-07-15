@@ -8,6 +8,8 @@
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
     <AssemblyName>Amadiere.Website</AssemblyName>
     <RootNamespace>Amadiere.Website</RootNamespace>
+    <ApplicationInsightsResourceId>/subscriptions/981e54e1-2a16-49d1-9713-83304027ab4e/resourcegroups/Amadiere/providers/microsoft.insights/components/Amadiere</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/981e54e1-2a16-49d1-9713-83304027ab4e/resourceGroups/Amadiere/providers/microsoft.insights/components/Amadiere</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
@@ -36,6 +38,9 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>
