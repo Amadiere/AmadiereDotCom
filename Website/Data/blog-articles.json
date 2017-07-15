@@ -10,6 +10,7 @@
     "lastModifiedOn": "2011-08-30T10:42:00.511Z",
     "deletedOn": null,
     "viewName": "AMA00001_AspNetMvc3DropdownLists",
+    "mainImage": "waterdrop.jpg",
     "description": "There are a number of very useful helpers that come as default with the ASP.NET MVC framework, but one that always...",
     "tags": [
       "JQuery",
@@ -28,6 +29,7 @@
     "lastModifiedOn": "2011-06-20T09:45:00.511Z",
     "deletedOn": null,
     "viewName": "AMA00002_UnobtrusiveJavaScriptAspNetMvcJQuery",
+    "mainImage": "electricsocket.jpg",
     "description": "I've recently experimented a little bit with some of the new unobtrusive JavaScript stuff that...",
     "tags": [
       "ASP.NET MVC",
@@ -48,6 +50,7 @@
     "lastModifiedOn": "2011-02-10T09:02:00.511Z",
     "deletedOn": null,
     "viewName": "AMA00003_ClassicAspPasswordHashing",
+    "mainImage": "potatohash.jpg",
     "description": "One of the things I've recently been working on is a solution to allow both a .NET application and...",
     "tags": [
       "ASP.NET",
@@ -69,6 +72,7 @@
     "lastModifiedOn": "2010-09-10T09:30:00.511Z",
     "deletedOn": null,
     "viewName": "AMA00004_IsolatedStorageWindowsPhone7",
+    "mainImage": "barrels.jpg",
     "description": "One of the most amazing omissions from the Windows Phone 7 OS is an SQL Server of some description that applications...",
     "tags": [
       "C#",
@@ -87,6 +91,7 @@
     "lastModifiedOn": "2010-04-06T15:43:00.511Z",
     "deletedOn": null,
     "viewName": "AMA00005_DevelopmentSmtpIISWindows7",
+    "mainImage": "envelope.jpg",
     "description": "I've had one of them days. You know? That simple task that spiralled out of control and resulted in me...",
     "tags": [
       "ASP.NET",
@@ -106,6 +111,7 @@
     "lastModifiedOn": "2010-03-15T20:40:00.511Z",
     "deletedOn": null,
     "viewName": "AMA00006_GoodQualityImageResizing",
+    "mainImage": "landscape.jpg",
     "description": "I encountered a little bit of a problem the other day with some image resizing code from within an ASP.NET MVC...",
     "tags": [
       "ASP.NET",
@@ -124,6 +130,7 @@
     "lastModifiedOn": "2010-03-01T22:22:00.511Z",
     "deletedOn": null,
     "viewName": "AMA00007_PortableMvcApps",
+    "mainImage": "tardis.jpg",
     "description": "ASP.NET MVC is awesome and allows for some great applications to be made, quickly, while at the same time offering a high...",
     "tags": [
       "ASP.NET MVC",
@@ -143,6 +150,7 @@
     "lastModifiedOn": "2010-02-12T21:56:00.511Z",
     "deletedOn": null,
     "viewName": "AMA00008_BiggestBitsAreTheLittleBits",
+    "mainImage": "mykonos.jpg",
     "description": "There is the excellently accurate sentence attributed to Tom Cargill that goes: The first 90% takes...",
     "tags": [
       "Usability",
@@ -161,6 +169,7 @@
     "lastModifiedOn": "2009-07-29T12:40:00.511Z",
     "deletedOn": null,
     "viewName": "AMA00009_PHPConnectionsNtwdblib",
+    "mainImage": "phpcode.jpg",
     "description": "One of the systems within my workplace is a PHP5 application (via Apache on Windows) that uses MySQL5.0 ...",
     "tags": [
       "PHP",
@@ -179,6 +188,7 @@
     "lastModifiedOn": "2009-06-05T19:05:00.511Z",
     "deletedOn": null,
     "viewName": "AMA00010_MultipleSubversionProjects",
+    "mainImage": "peacock.jpg",
     "description": "I've been quite frustrated that no matter where I looked on the web, what I searched for, which search engine I used - all the articles...",
     "tags": [
       "Subversion",
@@ -197,6 +207,7 @@
     "lastModifiedOn": "2009-04-20T13:32:00.511Z",
     "deletedOn": null,
     "viewName": "AMA00011_MysqlTwoWayMasterMasterReplication",
+    "mainImage": "stormtrooper.jpg",
     "description": "A bit back, I was looking into database replication and specifically, two-way replication. Meaning that either server could be...",
     "tags": [
       "MySQL"
@@ -214,6 +225,7 @@
     "lastModifiedOn": "2009-04-07T23:25:00.511Z",
     "deletedOn": null,
     "viewName": "AMA00012_CalculatingEaster",
+    "mainImage": "easter.jpg",
     "description": "Every now and then, something really complex comes along and the answer is there on Google. A bit back now, I was asked to create a file for ...",
     "tags": [
       "ClassicASP",
@@ -232,6 +244,7 @@
     "lastModifiedOn": "2009-04-04T13:07:00.511Z",
     "deletedOn": null,
     "viewName": "AMA00013_LayoutOfSubversionRepository",
+    "mainImage": "maze.jpg",
     "description": "In and amongst other things recently, I've been working on sorting out a replacement for Microsoft SourceSafe / nothing at all. I've done...",
     "tags": [
       "Subversion"

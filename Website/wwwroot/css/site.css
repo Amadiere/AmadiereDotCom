@@ -16,10 +16,13 @@ em.button-image-base, body.homepage .content .introduction .button-aboutme em.bu
   display: inline-block; }
 
 .social-media-buttons {
-  position: fixed;
-  top: 300px;
-  left: 0;
-  width: 50px; }
+  text-align: center; }
+  @media only screen and (min-width: 1000px) {
+    .social-media-buttons {
+      position: fixed;
+      top: 300px;
+      left: 0;
+      width: 50px; } }
 
 .share-btn {
   display: inline-block;
@@ -315,24 +318,35 @@ body.blog div.logo-box {
       margin-right: 100px; } }
 
 body.blog header {
+  position: relative;
   background-color: #9d0202;
-  padding: 2em 2em 2em 2em;
+  padding: 2em 2em 2em 240px;
   margin: 1em 0;
   color: #FFFFFF; }
+  body.blog header .main-image img {
+    position: absolute;
+    left: 0;
+    top: 0px;
+    height: 100%;
+    width: 200px; }
   body.blog header h2 {
     font-size: 24pt;
     margin-bottom: 5px; }
   @media only screen and (min-width: 1000px) {
     body.blog header {
-      padding: 3em 3em 3em 6em; } }
+      padding: 3em 3em 3em 250px; } }
+  @media only screen and (max-width: 600px) {
+    body.blog header {
+      padding-left: 2em; }
+      body.blog header .main-image img {
+        display: none; } }
   body.blog header ul.tag-list {
     margin-top: 10px;
     font-size: smaller; }
     body.blog header ul.tag-list li {
       display: inline-block;
       background-color: #840202;
-      padding: 5px 10px;
-      /*border-right: 5px solid $primary-color;*/ }
+      padding: 5px 10px; }
 
 body.blog footer {
   background-color: #cbcbcb;
@@ -341,10 +355,13 @@ body.blog footer {
   text-align: center;
   clear: both; }
 
+body.blog.blog-index header {
+  padding-left: 20px; }
+
 body.blog.blog-index div.content {
   height: 100%;
   display: table;
-  padding-left: 100px;
+  padding-left: 20px;
   padding-right: 20px; }
 
 @media only screen and (max-width: 600px) {
@@ -352,6 +369,10 @@ body.blog.blog-index div.content {
     display: none; } }
 
 @media only screen and (min-width: 1000px) {
+  body.blog.blog-index header {
+    padding-left: 100px; }
+  body.blog.blog-index div.content {
+    padding-left: 100px; }
   body.blog.blog-index div.twitter-feed {
     display: table-cell;
     width: 500px;

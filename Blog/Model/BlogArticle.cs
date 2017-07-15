@@ -12,6 +12,7 @@ namespace Amadiere.Blog.Model
         public int? Year { get; set; }
         public int? Month { get; set; }
         public string Description { get; set; }
+        public string MainImage { get; set; }
 
         public IEnumerable<string> Tags { get; set; }
 

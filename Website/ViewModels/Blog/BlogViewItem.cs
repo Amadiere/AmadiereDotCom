@@ -21,6 +21,7 @@ namespace Amadiere.Website.ViewModels.Blog
             ViewName = article.ViewName;
             Tags = article.Tags;
             Description = article.Description;
+            MainImage = article.MainImage;
         }
 
         public string Title { get; set; }
@@ -28,6 +29,7 @@ namespace Amadiere.Website.ViewModels.Blog
         public int? Year { get; set; }
         public int? Month { get; set; }
         public string Description { get; set; }
+        public string MainImage { get; set; }
 
         public IEnumerable<string> Tags { get; set; }
 

@@ -11,6 +11,9 @@
     <a href="~/"><img src="/images/logo.png" alt="Amadiere.com" class="logo" /></a>
 </div>
 <header>
+    <div class="main-image">
+        <img src="/images/articles/@Model.Article.Year/@Model.Article.MainImage" alt="@Model.Article.Title" />
+    </div>
     <h2>@Model.Article.Title</h2>
     <div>Published on: @Model.PublishedOn)</div>
     <ul class="tag-list">
@@ -23,11 +26,12 @@
 <article>
     @Html.Partial($"Articles/{Model.Article.Year}/{Model.Article.ViewName}")
 </article>
+
+@Html.Partial("_SocialMediaSharing", Model)
+
 <footer>
     Thanks for reading this blog!
 </footer>
-
-@Html.Partial("_SocialMediaSharing", Model)
 
 @section BottomOfHead
 {
