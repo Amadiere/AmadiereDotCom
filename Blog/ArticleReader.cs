@@ -19,7 +19,12 @@ namespace Amadiere.Blog
         private IQueryable<BlogArticle> GetAllActiveArticles()
         {
             return BlogRepository.Articles.Where(x => x.DeletedOn == null);
-        } 
+        }
+
+        public IEnumerable<BlogArticle> GetAll()
+        {
+            return GetAllActiveArticles();
+        }
 
         public BlogArticle Get(int id)
         {
