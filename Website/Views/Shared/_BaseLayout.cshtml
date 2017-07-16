@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
     
-    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light|Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
     
     @RenderSection("BottomOfHead", required: false)
     @Html.Raw(JavaScriptSnippet.FullScript)
@@ -44,14 +44,6 @@
 <body class="@ViewBag.BodyClasses">
     
     @RenderBody()
-    
-    <environment names="Development">
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment names="Staging,Production">
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>
