@@ -1,12 +1,20 @@
-﻿@{
-    Layout = "_BaseLayout";
-    ViewBag.BodyClasses = "blog";
+@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.BodyClasses = "error";
 }
 
 <div><a asp-controller="Home"><img src="/images/logo.png" alt="Amadiere.com" class="logo" /></a></div>
 <div class="content">
     @RenderBody()
 </div>
+
+<div class="buttons">
+    <a href="/blog" class="button-blog">
+        <em class="button-image"></em>
+        Return to my blog &gt;
+    </a>
+</div>
+
 
 @section BottomOfHead
 {

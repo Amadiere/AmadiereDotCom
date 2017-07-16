@@ -28,11 +28,11 @@ namespace Amadiere.Website.Controllers
         public IActionResult Article(int? year, int? month, string slug)
         {
             if (!year.HasValue || !month.HasValue || string.IsNullOrEmpty(slug))
-                return RedirectToAction("Index");
+                return NotFound();
 
             var article = Articles.Get(year.Value, month.Value, slug);
             if (article == null)
-                return RedirectToAction("Index");
+                return NotFound();
 
             var viewModel = new ArticleViewModel();
             viewModel.Article = new BlogViewItem(article);

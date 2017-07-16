@@ -37,20 +37,27 @@ namespace Amadiere.Website
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //    app.UseBrowserLink();
+            //}
+            //else
+            //{
+            //    app.UseStatusCodePages();
+            //}
 
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "error-handling",
+                    template: "error/{httpStatusCode}",
+                    defaults: new {controller = "Error", action = "Index", httpStatusCode = "500"});
+
                 routes.MapRoute(
                     name: "blog-articles",
                     template: "blog/{year}/{month}/{slug}",

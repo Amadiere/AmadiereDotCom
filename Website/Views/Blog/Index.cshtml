@@ -11,13 +11,13 @@
     <a href="~/"><img src="/images/logo.png" alt="Amadiere.com" class="logo" /></a>
 </div>
 <header>
-    <h2>Amadiere's Blog</h2>
+    <h2>Coding Blog</h2>
     <div>Content produced by me, Alex Holt. My opinions are my own.</div>
 </header>
 
 <div class="content">
     <ul id="content-list">
-        <li class="article"><h2>Most recent Amadiere.com posts</h2></li>
+        <li class="article title"><h2>Most recent Amadiere.com posts</h2></li>
         @foreach (var article in Model.Articles)
         {
             <li class="article">@Html.Partial("_ArticleListItem", article)</li>
@@ -31,6 +31,7 @@
 </div>
 
 <footer>
+    <div>Was this article good? Have any other feedback? Reach out to me on Twitter and let me know.</div>
     Amadiere.com
 </footer>
 

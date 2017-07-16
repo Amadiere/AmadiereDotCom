@@ -68,7 +68,7 @@ body.blog {
 
     footer {
         background-color: darken($main-background-color, 10);
-        padding: 2em 100px;
+        padding: 2em;
         margin-top: 2em;
         text-align: center;
         clear: both;
@@ -128,8 +128,24 @@ body.blog {
 
         li.article {
             list-style: none;
-            margin-bottom: 0.5em;
+            position: relative;
             font-size: 13pt;
+            border-bottom: 1px solid darken($main-background-color,10);
+            min-height: 120px;
+
+            .article-details {
+                margin-left: 110px;
+                padding-left: 1em;
+                padding-top: 5px;
+                margin-right: 20px;
+            }
+
+            &.title {
+                min-height: auto;
+                height: 1.2em;
+                border-bottom: none;
+                padding-bottom: 0.5em;
+            }
 
             .date {
                 padding-top: 0.2em;
@@ -139,6 +155,17 @@ body.blog {
 
             .description {
                 padding: 0.5em 0;
+            }
+        }
+
+        img.mini {
+            position: absolute;
+            height: 100px;
+            width: 110px;
+            top: 10px;
+
+            @media only screen and (min-width: 1000px) {
+                top: 0;
             }
         }
     }
