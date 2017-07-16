@@ -1,0 +1,64 @@
+<p>I've worked on the new version of this blog for a while now - it got the official "works on my PC" badge and I felt the time was right
+    to be able to upload and share with the world. So I setup my Azure Portal to enable me to deploy automatically from a check-in to the
+    GitHub repository that contains the code. However, I immediately ran into a problem - the entire website wouldn't even start, let alone render
+    correctly.</p>
+<p>Initially, I had a problem even seeing the error - this was resolved by including the property <code>ASPNETCORE_ENVIRONMENT</code> and
+    setting its value to <code>Development</code>. This enables <strong>anyone</strong> to view the details of the error messages as they
+    happen on your website. Not a great thing to enable in a production site, but as I was still on the azurewebsites.net domain, I didn't
+    feel it was a problem for now.</p>
+<p>After that was enabled, I was greeted by this error:</p>
+<pre><code>Command: "D:\some\path\to\site\deployments\tools\deploy.cmd"
+Handling ASP.NET Core Web Application deployment.
+  Restore completed in 14.55 sec for D:\some\path\to\site\repository\Website\Website.csproj.
+  Restore completed in 14.72 sec for D:\some\path\to\site\repository\Blog\Blog.csproj.
+  Restore completed in 14.65 sec for D:\some\path\to\site\repository\Blog.Tests\Blog.Tests.csproj.
+  Restore completed in 14.56 sec for D:\some\path\to\site\repository\Website.Tests\Website.Tests.csproj.
+  Restore completed in 8.27 sec for D:\some\path\to\site\repository\Website\Website.csproj.
+Microsoft (R) Build Engine version 15.3.388.41745 for .NET Core
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+D:\Program Files (x86)\dotnet\sdk\2.0.0-preview2-006497\Sdks\Microsoft.NET.Sdk\build\Microsoft.NET.Sdk.DefaultItems.targets(285,5): 
+    error : Duplicate 'Content' items were included. The .NET SDK includes 'Content' items from your project directory by default. You can either
+    remove these items from your project file, or set the 'EnableDefaultContentItems' property to 'false' if you want to explicitly include them 
+    in your project file. For more information, see https://aka.ms/sdkimplicititems. The duplicate items were: 'wwwroot\css\partials\_social-media.scss'
+    [D:\some\path\to\site\repository\Website\Website.csproj]
+Failed exitCode=1, command=dotnet publish "D:\some\path\to\site\repository\Website\Website.csproj" --output "D:\local\Temp\8d4bc7e784d0a7d" --configuration Release
+An error has occurred during web site deployment.
+\r\nD:\Program Files (x86)\SiteExtensions\Kudu\63.60712.2926\bin\Scripts\starter.cmd "D:\some\path\to\site\deployments\tools\deploy.cmd"</code></pre>
+
+<p>Obviously, Stack Overflow was the starting point when I 
+    <a href="https://stackoverflow.com/questions/43325916/duplicate-content-items-were-included-the-net-sdk-includes-content-items-f">stumbled upon this article</a>.
+    That article, as well as some of the <a href="https://github.com/dotnet/core/blob/master/release-notes/1.0/sdk/1.0-rc3-default-compile-items.md">Microsoft Documentation</a>, offers the suggestion to turn off the DefaultContentItems section with the following line:
+</p>
+
+<pre><code class="xml">&lt;EnableDefaultContentItems&gt;false&lt;/EnableDefaultContentItems&gt;</code></pre>
+
+<p>However, continuing to read through that Stack Overflow post came up gold. I had to go digging through an unloaded .csproj file. From
+    there I found some content nodes to delete. As you can tell from 
+    <a href="https://github.com/Amadiere/AmadiereDotCom/commit/577af7fea2760b295c6246166a70de8fed47dc0e">the commit itself</a>, I just took a
+    hatchet to the project file and removed all the code that I didn't feel needed to be there. Committed, re-pushed and everything worked.</p>
+
+<pre><code class="xml">-  &lt;ItemGroup&gt;
+ -    &lt;Content Include="wwwroot\css\highlight\atom-one-dark.css" /&gt;
+ -    &lt;Content Include="wwwroot\css\highlight\atom-one-light.css" /&gt;
+ -    &lt;Content Include="wwwroot\css\highlight\github-gist.css" /&gt;
+ -    &lt;Content Include="wwwroot\css\highlight\github.css" /&gt;
+ -    &lt;Content Include="wwwroot\css\modules\_blog.scss" /&gt;
+ -    &lt;Content Include="wwwroot\css\modules\_homepage.scss" /&gt;
+ -    &lt;Content Include="wwwroot\css\modules\_my-name-is.scss" /&gt;
+ -    &lt;Content Include="wwwroot\css\modules\_aboutme.scss" /&gt;
+ -    &lt;Content Include="wwwroot\css\partials\_boxes.scss" /&gt;
+ -    &lt;Content Include="wwwroot\css\partials\_buttons.scss" /&gt;
+ -    &lt;Content Include="wwwroot\css\Site.scss" /&gt;
+ -    &lt;Content Include="wwwroot\css\_base.scss" /&gt;
+ -    &lt;Content Include="wwwroot\images\cool-alex.jpg" /&gt;
+ -    &lt;Content Include="wwwroot\images\icons\coffee-mug.svg" /&gt;
+ -    &lt;Content Include="wwwroot\images\icons\glass-shot.svg" /&gt;
+ -    &lt;Content Include="wwwroot\images\icons\meeple.svg" /&gt;
+ -    &lt;Content Include="wwwroot\images\icons\rolling-dices.svg" /&gt;
+ -    &lt;Content Include="wwwroot\js\highlight.min.js" /&gt;
+ -  &lt;/ItemGroup&gt;</code></pre>
+
+<p>Bravo!</p>
+<p>However, it probably is worth noting. This error occurred one further time as I had added more items to my project. I resolved it the same way, by
+    unloading the project and editing the file manually. Hopefully this is just a blip and ironed out in a future Visual Studio update.</p>
