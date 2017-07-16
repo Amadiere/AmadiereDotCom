@@ -19,6 +19,7 @@ namespace Amadiere.Website.Controllers
             Articles = articleReader;
         }
 
+        [Produces("application/xml")]
         public IActionResult Index()
         {
             var viewModel = new IndexViewModel();
