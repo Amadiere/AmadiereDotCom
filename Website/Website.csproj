@@ -11,11 +11,6 @@
     <ApplicationInsightsResourceId>/subscriptions/981e54e1-2a16-49d1-9713-83304027ab4e/resourcegroups/Amadiere/providers/microsoft.insights/components/Amadiere</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/981e54e1-2a16-49d1-9713-83304027ab4e/resourceGroups/Amadiere/providers/microsoft.insights/components/Amadiere</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="wwwroot\images\articles\2017\duplikat.jpg" />
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
@@ -46,8 +41,5 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Blog\Articles\2017\" />
   </ItemGroup>
 </Project>
