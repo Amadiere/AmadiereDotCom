@@ -3,7 +3,7 @@
     ViewData["Title"] = Model.Article.Title;
     ViewData["Description"] = Model.Article.Description;
     ViewData["Canonical"] = Model.FullUrl;
-    ViewData["MainImage"] = $"/images/articles/{Model.Article.Year}/{Model.Article.MainImage}";
+    ViewData["MainImage"] = $"images/articles/{Model.Article.Year}/{Model.Article.MainImage}";
     Layout = "~/Views/Shared/_BaseLayout.cshtml";
     ViewBag.BodyClasses = "blog";
 }
