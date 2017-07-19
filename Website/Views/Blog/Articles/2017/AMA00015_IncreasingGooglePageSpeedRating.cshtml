@@ -1,0 +1,85 @@
+<p>Speed. One of the most important parts of any website - but often one of the most neglected.</p>
+<p>
+    One of the best articles I've read on this topic, is also one of the most entertaining. David Gilberton at Hackernoon
+    wrote a fantastic piece on what he
+    <a href="https://hackernoon.com/10-things-i-learned-making-the-fastest-site-in-the-world-18a0e1cdf4a7">learned making 'the fastest site in the world'</a>.
+    He opens with the first point, which I think is probably one of the most important:
+</p>
+<blockquote>
+    If all you do is try to make a fast site, you will automatically get a faster site. You have to try non stop, but it's like
+    being a jerk, it's actually pretty easy with a bit of practice.
+    <cite>David Gilberton</cite>
+</blockquote>
+
+<p>
+    For this article, I'm going to focus on improving the benchmarking afforded by the
+    <a href="https://developers.google.com/speed/pagespeed/insights/">Google PageSpeed Insights</a>. To do that, we need establish what our
+    starting point is - well, here they are:
+</p>
+
+<div>
+    <img src="/images/articles/2017/15-gps-before-desktop.jpg" alt="Google PageSpeed (before changes) Desktop: 88%" />
+    <img src="/images/articles/2017/15-gps-before-mobile.jpg" alt="Google PageSpeed (before changes): Mobile: 83%" />
+</div>
+
+<p>That's OK, I guess. If you want to settle for mediocrity. Let's see what I can do to improve it!</p>
+
+<h3>Optimising images</h3>
+First - I think the main image I need to care about is the <code>cool-alex.jpg</code>, which is a big picture of me drinking
+a beer (which I randomly thought at some point, was a respectable image to use as the main picture on my homepage - go figure).
+It's currently approximately <strong>104kb</strong> and is 500px * 500px. Looking at the CSS, we have the following:
+<pre><code class="css">img.circle-of-alex {
+    height: 350px;
+    width: 350px;
+    @@include rounded(50%);
+
+    @@media only screen and (min-width: 600px) {
+        height: 500px;
+        width: 500px;
+    }
+}
+</code></pre>
+<p>
+    Poop. We can't just shrink the image size - it's already at its maximum display size. No worries, let's not lose heart. This is where
+    there are bunch of software pieces that can help you. I use the great <a href="http://www.irfanview.com/">Irfan View</a> (and PlugIns).
+    If I open my image in that, and click the "Save for Web", I'm given a bunch of optimisation changes which produce quite a size
+    reduction
+</p>
+
+<div>
+    <img src="/images/articles/2017/15-irfan-view-optimise-cool-alex.jpg" alt="Wowser! That's a good reduction!" />
+</div>
+
+<p>
+    What about the other image on the homepage? That's <code>logo.png</code>. It's pretty small and can't get any smaller. Wrong. It can, and by
+    quite a percentage. The image is currently the tiny <strong>2.7kb</strong> as a transparent PNG, however, using the same technique as I used
+    on the dashing mugshot, I can change the colour palatte to be only 16 colours and reduce the size down to only <strong>0.7kb</strong>.
+</p>
+
+<h3>Leveraging Browser Caching</h3>
+<p>Now we've got better images, we need to do a lot better with our browser caching. Currently, we've just left our images, CSS and JavaScript
+    etc to the default. Which is to get a fresh copy each time. Most of that stuff isn't going to change that often - so we just need to 
+    enable browser caching.</p>
+<p>For me, I'm using ASP.NET Core 1.1 (currently), so I can do this via some middleware in the .NET Pipeline like so.</p>
+<pre><code class="csharp">app.UseStaticFiles(new StaticFileOptions()
+{
+    OnPrepareResponse = (context) =>
+    {
+        var headers = context.Context.Response.GetTypedHeaders();
+        headers.CacheControl = new CacheControlHeaderValue()
+        {
+            MaxAge = TimeSpan.FromDays(350),
+ 
+        };
+    }
+});</code></pre>
+<p>What about if I change my logo? Or I suddenly decide that drinking alcohol isn't a respectable image to use? If we cache it, then it'll
+    remain the same. That's where we just cheat a little. We add a QueryString to it, to make it cache it now, but then when we want to change
+    it in the future - we can simply change the random string we suffixed.</p>
+<pre><code class="html">&lt;img src="/images/cool-alex.jpg?o1n3rgpoxl09291243" alt="The coolest." class="circle-of-alex" /&gt;</code></pre>
+
+<p>We can see this in action by using Google Dev Tools. Go to the Network tab and refresh your page. Make sure that you untick the "Disable Cache"
+    box to see how it would normally behave. Then you'll see similar to this:</p>
+<div>
+    <img src="/images/articles/2017/15-dev-tools-cached-image.jpg" alt="Cached for a year!" />
+</div>

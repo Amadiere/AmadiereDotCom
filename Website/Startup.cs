@@ -1,10 +1,13 @@
-﻿using Amadiere.Blog;
+﻿using System;
+using Amadiere.Blog;
 using Amadiere.Blog.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 
 namespace Amadiere.Website
 {
@@ -47,7 +50,17 @@ namespace Amadiere.Website
                 app.UseStatusCodePagesWithReExecute("/Error/{0}");
             }
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                OnPrepareResponse = (context) =>
+                {
+                    var headers = context.Context.Response.GetTypedHeaders();
+                    headers.CacheControl = new CacheControlHeaderValue()
+                    {
+                        MaxAge = TimeSpan.FromDays(350),
+                    };
+                }
+            });
 
             app.UseMvc(routes =>
             {
