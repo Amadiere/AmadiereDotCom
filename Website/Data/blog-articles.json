@@ -2,20 +2,20 @@
   {
     "id": 15,
     "year": 2017,
-    "month": 7,
+    "month": 8,
     "slug": "increasing-my-google-page-speed-rating",
     "title": "Speed Is Of The Essence - Increasing Google Page Speed Rating",
     "createdOn": "2017-07-19T21:06:00.000Z",
-    "publishedOn": null,
-    "lastModifiedOn": "2017-07-19T21:20:00.000Z",
+    "publishedOn": "2017-08-09T21:39:00.000Z",
+    "lastModifiedOn": "2017-08-09T21:39:00.000Z",
     "deletedOn": null,
     "viewName": "AMA00015_IncreasingGooglePageSpeedRating",
     "mainImage": "speedometer.jpg",
-    "description": "",
+    "description": "Speed. One of the most important parts of any website - but often one of the most neglected.",
     "tags": [
       "Performance",
-      ".NET Core",
-      "Azure"
+      "Google Page Speed",
+      "HTML"
     ]
   },
   {
