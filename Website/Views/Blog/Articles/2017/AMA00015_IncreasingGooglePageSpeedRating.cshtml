@@ -84,3 +84,21 @@ It's currently approximately <strong>104kb</strong> and is 500px * 500px. Lookin
 <div>
     <img src="/images/articles/2017/15-dev-tools-cached-image.jpg" alt="Cached for a year!" />
 </div>
+
+<h3>Remaining Topics</h3>
+<p>The two remaining topics do require a significant amount more thought and potentially maintenance. I'll cover them briefly here, with some suggestions,
+    but they are for a future blog article or homework for the reader.</p>
+<h4>Eliminate render-blocking JavaScript and CSS</h4>
+<p>This is largely about ensuring that only the content that needs to, gets loaded before the page finishes rendering. Some common techniques to resolve
+    this problem are:</p>
+<ul>
+    <li>Use <code>defer</code> or <code>async</code> on scripts to either force them to wait until the end, or to start loading, but not to block rendering
+        for them.</li>
+    <li>Remove JavaScript or CSS that is not needed for that page. And this is where some of the major headaches come in for a large site and some trade-offs
+        need to occur. It's viable to create separate CSS files for each major page/section of your site, with only the styles that are needed for that page/section.
+        This would reduce the overall size of the CSS file, and the number of styles that need to be parsed before the page can be rendered.</li>
+    <li>Further reducing required CSS for page load by taking any media queries out of the main CSS file and placing them in their own, conditionally included,
+        resource. This would mean that you maybe have one CSS file that contains the normal stuff, plus additional files for any other media sizes needed, which would
+        only be loaded when their trigger points are met.</li>
+</ul>
+<h4></h4>

@@ -14,11 +14,6 @@ body.blog {
         padding-bottom: 0.5em;
         margin-left: 40px;
         margin-right: 40px;
-
-        @media only screen and (min-width: 1000px) {
-            margin-left: 100px;
-            margin-right: 100px;
-        }
     }
 
     header {
@@ -41,18 +36,6 @@ body.blog {
         padding: 2em 2em 2em 240px;
         margin: 1em 0;
         color: $primary-color-compliment;
-
-        @media only screen and (min-width: 1000px) {
-            padding: 3em 3em 3em 250px;
-        }
-
-        @media only screen and (max-width: 600px) {
-            padding-left: 2em;
-
-            .main-image img {
-                display: none;
-            }
-        }
 
         ul.tag-list {
             margin-top: 10px;
@@ -86,29 +69,6 @@ body.blog {
             padding-left: 20px;
             padding-right: 20px;
         }
-
-        @media only screen and (max-width: 600px) {
-            div.twitter-feed {
-                display: none;
-            }
-        }
-
-        @media only screen and (min-width: 1000px) {
-            header {
-                padding-left: 100px;
-            }
-
-            div.content {
-                padding-left: 100px;
-            }
-
-            div.twitter-feed {
-                display: table-cell;
-                width: 500px;
-                height: 100%;
-                margin-left: 20px;
-            }
-        }
     }
 
     ul#content-list {
@@ -122,10 +82,7 @@ body.blog {
         width: 70%;
 
         @include rounded();
-
-        @media only screen and (min-width: 1000px) {
-        }
-
+        
         li.article {
             list-style: none;
             position: relative;
@@ -163,10 +120,6 @@ body.blog {
             height: 100px;
             width: 110px;
             top: 10px;
-
-            @media only screen and (min-width: 1000px) {
-                top: 0;
-            }
         }
     }
 
@@ -175,11 +128,6 @@ body.blog {
         margin-left: 20px;
         margin-right: 20px;
         line-height: 1.35em;
-
-        @media only screen and (min-width: 1000px) {
-            margin-left: 100px;
-            margin-right: 100px;
-        }
 
         p {
             margin-bottom: 1em;
@@ -215,7 +163,6 @@ body.blog {
             margin: 1em 0;
             color: $primary-color;
             font-size: 1.5em;
-
         }
     }
 }

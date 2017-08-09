@@ -2,5 +2,17 @@
   {
     "outputFile": "wwwroot/css/Site.css",
     "inputFile": "wwwroot/css/Site.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Site-Phone.css",
+    "inputFile": "wwwroot/css/Site-Phone.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Site-Screen.css",
+    "inputFile": "wwwroot/css/Site-Screen.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Site-Tablet.css",
+    "inputFile": "wwwroot/css/Site-Tablet.scss"
   }
 ]
