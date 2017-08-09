@@ -202,6 +202,20 @@ body.blog {
             border-left: 10px solid $primary-color;
             background-color: lighten($primary-color, 68);
             padding: 1em;
+            margin: 1em;
+        }
+
+        img {
+            vertical-align: top;
+            border: 10px solid lighten($primary-color, 0);
+            margin-bottom: 1em;
+        }
+
+        h3 {
+            margin: 1em 0;
+            color: $primary-color;
+            font-size: 1.5em;
+
         }
     }
 }

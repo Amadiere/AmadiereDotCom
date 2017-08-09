@@ -441,7 +441,16 @@ body.blog article {
   body.blog article blockquote {
     border-left: 10px solid #9d0202;
     background-color: #fffbfb;
-    padding: 1em; }
+    padding: 1em;
+    margin: 1em; }
+  body.blog article img {
+    vertical-align: top;
+    border: 10px solid #9d0202;
+    margin-bottom: 1em; }
+  body.blog article h3 {
+    margin: 1em 0;
+    color: #9d0202;
+    font-size: 1.5em; }
 
 body.error div {
   text-align: center;
