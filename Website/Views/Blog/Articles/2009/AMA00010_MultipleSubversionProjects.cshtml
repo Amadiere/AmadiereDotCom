@@ -61,7 +61,7 @@
         the <strong>solution </strong>and select "Add Solution To Subversion" and fill in
         the following pop-up box similar to below.
         <img title="Add Solution to Subversion (AnkhSVN)"
-             src="http://amadiere.com/blog/wp-content/uploads/2009/06/svnexternals_addsolutiontosvn.png"
+             src="https://amadiere.com/blog/wp-content/uploads/2009/06/svnexternals_addsolutiontosvn.png"
              alt="Add both solutions to your SVN repository however you want."
              width="558" height="600" />
         <p>Add both solutions to your SVN repository however you want.</p>
@@ -84,13 +84,11 @@
     <li>
         Open your repository browser. (e.g, right clicking on a file in Windows Explorer -&gt; TortoiseSVN
         -&gt; repo-browser.
-        <img title="Repository Browser" src="http://amadiere.com/blog/wp-content/uploads/2009/06/svnexternals_repositorybrowser.png" alt="Your repository should look something like this now." width="696" height="490" />
         Your repository should look something like this now.
     </li>
     <li>Right click on the trunk of Project01 and click "Show Properties".</li>
     <li>
         A list of properties (possibly including svn:ignore are shown. Click "New"<br />
-        <img title="SVN Properties" src="http://amadiere.com/blog/wp-content/uploads/2009/06/svnexternals_properties.png" alt="SVN Properties" width="582" height="296" />
     </li>
     <li>
         Within the "New Properties" window, you want to add "svn:externals" to the top right drop down box
@@ -100,7 +98,6 @@
 <pre>Libraries        http://svn.codespaces.com/amadiere/aspnet/Libraries/trunk/Libraries/
 Libraries.Tests  http://svn.codespaces.com/amadiere/aspnet/Libraries/trunk/Libraries.Tests/</pre>
 
-        <img title="Add new property" src="http://amadiere.com/blog/wp-content/uploads/2009/06/svnexternals_addproperties.png" alt="Don't forget to type &quot;svn:externals&quot; into the top right hand box." width="577" height="314" /><p class="wp-caption-text">
         <p>Don&#39;t forget to type &quot;svn:externals&quot; into the top right hand box.</p>
     </li>
     <li>Reopen Visual Studio and your Project01 Solution.</li>
@@ -113,7 +110,6 @@ Libraries.Tests  http://svn.codespaces.com/amadiere/aspnet/Libraries/trunk/Libra
         Right click again on the Solution name and add an "Existing Project". Navigate to your Project01
         directory and you should spot there are now 4 project directories with two of them being your
         Libraries projects! Simply go into them and add them one at a time.
-        <img title="Add Existing Project" src="http://amadiere.com/blog/wp-content/uploads/2009/06/svnexternals_addexistingproject.png" alt="Adding an existing project in Visual Studio" width="641" height="514" />
         <p>Adding an existing project in Visual Studio</p>
     </li>
     <li>Commit your changes and you're done!</li>

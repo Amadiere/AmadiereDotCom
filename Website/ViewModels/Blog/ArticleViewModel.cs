@@ -13,7 +13,7 @@ namespace Amadiere.Website.ViewModels.Blog
 
         public string FullUrl
         {
-            get { return $"http://amadiere.com/blog/{Article.Year}/{Article.Month}/{Article.Slug}"; }
+            get { return $"https://amadiere.com/blog/{Article.Year}/{Article.Month}/{Article.Slug}"; }
         }
 
         public string EncodedTitle
