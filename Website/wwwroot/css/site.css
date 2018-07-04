@@ -379,6 +379,14 @@ body.blog.blog-index div.content {
     height: 100%;
     margin-left: 20px; } }
 
+body.blog .article-summary {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  padding: 5px; }
+  body.blog .article-summary .date {
+    width: 200px; }
+
 body.blog ul#content-list {
   height: 100%;
   vertical-align: top;

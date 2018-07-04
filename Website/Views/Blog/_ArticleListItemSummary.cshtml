@@ -1,0 +1,9 @@
+@model Amadiere.Website.ViewModels.Blog.BlogViewItem
+
+<div class="article-summary">
+    <div class="date">@Model.PublishedOn?.ToString("dd MMM yyyy @ HH:mm")</div>
+    <div>
+        <a asp-controller="Blog" asp-action="Article" asp-route-month="@Model.Month" asp-route-year="@Model.Year" asp-route-slug="@Model.Slug">@Html.DisplayFor(x => x.Title)</a><br />
+        @Model.Description by <strong>Alex Holt</strong>
+    </div>
+</div>

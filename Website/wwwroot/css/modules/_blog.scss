@@ -111,6 +111,17 @@ body.blog {
         }
     }
 
+    .article-summary {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+        padding: 5px;
+
+        .date {
+            width: 200px;
+        }
+    }
+
     ul#content-list {
         h2 {
             font-size: 14pt;

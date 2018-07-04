@@ -1,0 +1,26 @@
+@model Amadiere.Website.ViewModels.Blog.AllViewModel
+@{
+    ViewData["Title"] = "All Blog Posts";
+    ViewData["Description"] = "Amadiere.com by Alex Holt - A coding blog with a particular focus on .NET and Web Development";
+    ViewData["Canonical"] = Url.Action("All", "Blog");
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.BodyClasses = "blog blog-index";
+}
+
+<div class="logo-box">
+    <a href="~/"><img src="/images/logo.png" alt="Amadiere.com" class="logo" /></a>
+</div>
+<header>
+    <h2>All Blog Articles</h2>
+    <div>Just a list of all the pages I've written up.</div>
+</header>
+
+<div class="content">
+    <h2>Amadiere.com posts</h2>
+    <ul>
+        @foreach (var article in Model.Articles)
+        {
+            <li>@Html.Partial("_ArticleListItemSummary", article)</li>
+        }
+    </ul>
+</div>

@@ -39,5 +39,13 @@ namespace Amadiere.Website.Controllers
 
             return View(viewModel);
         }
+
+        public IActionResult All()
+        {
+            var viewModel = new AllViewModel();
+            viewModel.Articles = Articles.GetAll().Select(x => new BlogViewItem(x));
+
+            return View(viewModel);
+        }
     }
 }
