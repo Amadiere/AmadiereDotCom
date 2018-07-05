@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>    
     <AssemblyName>Amadiere.Website.Tests</AssemblyName>
     <RootNamespace>Amadiere.Website.Tests</RootNamespace>
-    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
   </PropertyGroup>
 
   <ItemGroup>
