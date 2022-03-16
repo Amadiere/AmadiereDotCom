@@ -286,7 +286,7 @@ body.aboutme .headline-section {
 body.aboutme .headline-section p {
   margin: 1em;
 }
-body.aboutme .headline-section em {
+body.aboutme .headline-section svg {
   height: 100px;
   font-size: 2em;
   padding: 0 0.1em;
