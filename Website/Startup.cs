@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 
 namespace Amadiere.Website
@@ -24,21 +25,23 @@ namespace Amadiere.Website
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddLogging(opt => {
+                opt.AddConsole();
+                opt.AddDebug();
+            });
+            
+
             services.AddMvc();
             services.AddScoped<IBlogRepository, BlogRepository>();
             services.AddScoped<IArticleReader, ArticleReader>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
             }
             else
             {
@@ -57,26 +60,26 @@ namespace Amadiere.Website
                 }
             });
 
-            app.UseMvc(routes =>
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapControllerRoute(
                     name: "sitemap",
-                    template: "sitemap.xml",
+                    pattern: "sitemap.xml",
                     defaults: new {controller = "Sitemap", action = "Index"});
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "error-handling",
-                    template: "error/{httpStatusCode}",
+                    pattern: "error/{httpStatusCode}",
                     defaults: new { controller = "Error", action = "Index", httpStatusCode = "500" });
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "blog-articles",
-                    template: "blog/{year}/{month}/{slug}",
+                    pattern: "blog/{year}/{month}/{slug}",
                     defaults: new { controller = "Blog", action = "Article" });
-
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

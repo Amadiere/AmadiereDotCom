@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Website.Controllers
 {
-    public class ErrorController : Controller
+    public class ErrorController : Microsoft.AspNetCore.Mvc.Controller
     {
         public IActionResult Index(string httpStatusCode)
         {

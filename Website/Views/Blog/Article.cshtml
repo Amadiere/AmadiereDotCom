@@ -25,10 +25,10 @@
     </ul>
 </header>
 <article>
-    @Html.Partial($"Articles/{Model.Article.Year}/{Model.Article.ViewName}")
+    <partial name="Articles/@Model.Article.Year/@Model.Article.ViewName" />
 </article>
 
-@Html.Partial("_SocialMediaSharing", Model)
+<partial name="_SocialMediaSharing" model="Model" />
 
 <footer>
     Thanks for reading this article!<br />

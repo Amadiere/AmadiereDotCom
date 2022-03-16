@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Amadiere.Website.Controllers
 {
-    public class SitemapController : Controller
+    public class SitemapController : Microsoft.AspNetCore.Mvc.Controller
     {
         private IArticleReader Articles { get; set; }
 

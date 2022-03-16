@@ -20,7 +20,7 @@
     <ul>
         @foreach (var article in Model.Articles)
         {
-            <li>@Html.Partial("_ArticleListItemSummary", article)</li>
+            <li><partial name="_ArticleListItemSummary" model="article"></partial></li>
         }
     </ul>
 </div>

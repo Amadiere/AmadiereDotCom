@@ -20,7 +20,7 @@
         <li class="article title"><h2>Most recent Amadiere.com posts</h2></li>
         @foreach (var article in Model.Articles)
         {
-            <li class="article">@Html.Partial("_ArticleListItem", article)</li>
+            <li class="article"><partial name="_ArticleListItem" model="article"></partial></li>
         }
     </ul>
     

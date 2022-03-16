@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Amadiere.Website.Controllers
 {
-    public class BlogController : Controller
+    public class BlogController : Microsoft.AspNetCore.Mvc.Controller
     {
         private IArticleReader Articles { get; set; }
 
