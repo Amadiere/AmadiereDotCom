@@ -1,5 +1,4 @@
 ﻿.button {
-    @include rounded(5px);
     text-decoration: none;
     display: inline-block;
     padding: 0.2em 0.5em;
@@ -16,7 +15,7 @@ em.button-image-base {
 }
 
 
-@mixin call-to-action($bg-color, $font-color, $image) {
+@mixin call-to-action($bg-color, $font-color) {
     @extend .button;
     background-color: $bg-color;
     color: $font-color;
@@ -27,13 +26,11 @@ em.button-image-base {
 
         > .button-image {
             $icon-color: $bg-color;
-            background-image: url($image);
         }
     }
 
     em.button-image {
-        @extend em.button-image-base;
+        @extend .button-image-base;
         $icon-color: $font-color;
-        background-image: url($image);
     }
 }
