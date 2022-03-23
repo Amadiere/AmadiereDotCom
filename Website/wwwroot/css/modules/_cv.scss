@@ -1,0 +1,73 @@
+﻿/// <reference path="../_base.scss" />
+/// <reference path="../partials/_buttons.scss" />
+/// <reference path="../partials/_boxes.scss" />
+
+#cv {
+    background-color: $primary-color;
+    padding-bottom: 1em;
+
+    header {
+        h1 {
+            color: $primary-color-compliment;
+            font-size: 3em;
+            padding: 0;
+        }
+
+        h2 {
+            color: $primary-color-compliment;
+            padding: 0;
+        }
+    }
+
+    section#work-history {
+        margin: 2em;
+        background-color: $primary-color-compliment;
+
+        .position {
+            width: 100%;
+            //background-color: greenyellow;
+            display: table;
+            border-bottom: 10px solid $primary-color;
+        }
+
+        .roles {
+            width: 65%;
+            display: table-cell;
+            //background-color: magenta;
+            padding: 1em;
+
+            .role-title {
+                color: $primary-color;
+                font-size: 1.4em;
+                font-weight: 600;
+            }
+
+            .time-in-role {
+                display: inline-block;
+                color: $main-font-color;
+                font-size: 0.8em;
+                padding-left: 1em;
+            }
+
+            .role-details {
+                line-height: 1.3em;
+                p {
+                    padding: 0.5em 0;
+                }
+                ul {
+                    margin-left: 2.5em;
+                }
+                li {
+                    padding: 3px;
+                }
+            }
+        }
+
+        .company {
+            width: 35%;
+            display: table-cell;
+            //background-color: aqua;
+            padding: 1em;
+        }
+    }
+}

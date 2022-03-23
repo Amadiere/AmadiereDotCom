@@ -1,0 +1,291 @@
+﻿@{
+    ViewData["Title"] = "About Me";
+    Layout = "~/Views/Shared/Layouts/_ContentLayout.cshtml";
+    ViewData["Description"] = "Alex Holt. That's me. Lots of little bits of information about me. Who knew?";
+    ViewData["Canonical"] = Url.Action("Index");
+}
+
+@section BottomOfHead {
+}
+
+<div id="cv">
+    <header>
+        <h1>Alex Holt</h1>
+        <h2>Curriculum Vitae</h2>
+        <p>I'm Alex. I'm from Ashton-under-Lyne but now live in Huddersfield, UK. I enjoy coding, board games, drinking whisk(e)y and spending time with my wife, two boys and dog.</p>
+
+    </header>
+
+    <section id="work-history">
+        <div class="position">
+            <div class="company">
+                WeBuyAnyCar.com
+            </div>
+            <div class="roles">
+                <div class="role">
+                    <div class="role-title">
+                        Solutions Architect
+                        <div class="time-in-role">March 2019 - Present</div>
+                    </div>
+                    <div class="role-details">
+                    </div>
+                </div>
+                <div class="role">
+                    <div class="role-title">
+                        Software Developer Team Lead
+                        <div class="time-in-role">April 2016 - March 2019</div>
+                    </div>
+                    <div class="role-details">
+                        <p>
+                            My job was to lead a fully autonomous software development team, with a product owner, QA analysts and developers,
+                            while still being knee-deep in code, as well as being expected to be the tech lead /buck-stops-here guy to keep everyone
+                            going forward. Since I've become team lead, myself and my team have been responsible for:
+                            <ul>
+                                <li>Fully automating our code releases to all elements of our application.</li>
+                                <li>Integrated with numerous 3rd parties with bespoke solutions.</li>
+                                <li>Built a Xamarin application targeting iOS and Android.</li>
+                                <li>Built new external API with authentication & token management.</li>
+                                <li>Begun working on a rebuild of the public website, with the focus on speed & UX.</li>
+                                <li>Been involved in many recruitments for Devs within my team and others</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+                <div class="role">
+                    <div class="role-title">
+                        Senior Software Developer
+                        <div class="time-in-role">October 2014 - April 2016</div>
+                    </div>
+                    <div class="role-details">
+                        <p>
+                            I helped develop, maintain and support the full suite of software both internal and external for the WeBuyAnyCar.com
+                            website and systems. While at WeBuyAnyCar.com, I've been part of a team that has:
+                            <ul>
+                                <li>Redeveloped the website into an application that works in multiple countries.</li>
+                                <li>Supported and improved existed code bases.</li>
+                                <li>Designed and implemented a new appointment system used by the website, report analysts, the vehicle purchasers and their managers on a daily basis.</li>
+                                <li>
+                                    Implemented features across our entire stack including:
+                                    <ul>
+                                        <li>cosmetic changes of many sizes to the website.</li>
+                                        <li>business logic changes large and small across multiple WCF and WebAPI services.</li>
+                                        <li>database changes & schema designs to support new features.</li>
+                                        <li>added large features spanning the entire stack.</li>
+                                        <li>MSMQ subscibers to migrate data around legacy systems.</li>
+                                        <li>helped manage TFS and Release Management for the team to improve our release process.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="position">
+            <div class="company">
+                Stockport Council
+            </div>
+            <div class="roles">
+                <div class="role">
+                    <div class="role-title">
+                        Lead Developer
+                        <div class="time-in-role">April 2013 - October 2014</div>
+                    </div>
+                    <div class="role-details">
+                        <p>
+                            Introduced to a team that needed fresh blood, my main responsibilities have been to try and raise the bar and update
+                            practices and skill levels throughout the team. This has included:
+                            <ul>
+                                <li><strong>Shared Code</strong>: Introducing NuGet and internally written shared code libraries.</li>
+                                <li><strong>Git</strong>: Replacing Visual SourceSafe with Git as the source control system.</li>
+                                <li><strong>Build server</strong>: Introducing the concept of build servers and their benefits to the team.</li>
+                                <li><strong>C#</strong>: Removing the barrier for using C# and encouraging its use throughout the team.</li>
+                                <li><strong>ASP.NET MVC</strong>: Introducing MVC as an alternative to webforms and proprietary form technologies.</li>
+                                <li><strong>Unit Testing</strong>: Introducing and encouraging the use of unit testing code.</li>
+                                <li><strong>Code reviews</strong>: Supporting improvement with the use of code reviews.</li>
+                                <li>
+                                    <strong>Knowledge sharing sessions</strong>: Arranging sessions to teach and train staff on various topics such as object
+                                    orientated programming, JavaScript, Entity Framework, and the topics above.
+                                </li>
+                            </ul>
+                        </p>
+                        <p>
+                            <strong>Key projects</strong>
+                            <ul>
+                                <li>Online Flexitime system MVC/JavaScript based application.</li>
+                                <li>Phonebook with Active Directory integration.</li>
+                                <li>ICT Self Service redesign and reworking of all forms.</li>
+                                <li>Epix Payslips Archive system to display old payslips.</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="position">
+            <div class="company">
+                Trafford Council
+            </div>
+            <div class="roles">
+                <div class="role">
+                    <div class="role-title">
+                        Applications Developer
+                        <div class="time-in-role">October 2010 - April 2013</div>
+                    </div>
+                    <div class="role-details">
+                        <p>
+                            I worked as part of a small team of 3-4 developers for a Council of a few thousand employees producing web based &
+                            other systems.
+                        </p>
+                        <p>
+                            <strong>Booking System</strong>: I was responsible for designing the UX and building the front end, using in the C#, ASP.NET MVC, JQuery
+                            and HTML5 to build an app that targeted newer and older browsers simultaneously.
+                        </p>
+                        <p>
+                            <strong>Flexitime / Time recording system</strong>: Full responsibility for building a system, building on what I'd learnt doing a similar one
+                            years early at Tameside Council. Built in two stages to ensure it met a legal deadline imposed, the system was rolled out on
+                            time to positive reception. Built using C#, ASP.NET MVC, Entity Framework 4 (Code First) with heavy use of JQuery to ease
+                            user input. The system had to take into account the variety of working patterns / arrangements within the Council, including
+                            facilitating automatic enforced restrictions where appropriate.
+                        </p>
+                        <p>
+                            <strong>Phonebook / Profile System</strong>: Integrating with the previous two systems, the Phone Book using Active Directory as it's
+                            primary data store (but generating a cache for performance purposes). It allowed staff to update most of their details and
+                            add photographs to their account, which were reflected then in Outlook and Lync for them.
+                        </p>
+                        <p>
+                            <strong>General development improvements:</strong>
+                            <ul>
+                                <li>Implemented a build server to check the current status of each project.</li>
+                                <li>Implementation of an internal NuGet feed to share code libraries between projects.</li>
+                                <li>Introduction of Git as a source control system to the team.</li>
+                                <li>
+                                    Implemented a shared content library which enabled sharing of static content (such as CSS, JS, etc) but
+                                    also Razor Views to help ensure a consistent approach to Intranet & Public Website forms / applications.
+                                </li>
+                            </ul>
+                        </p>
+                        <p>
+                            <strong>Other projects:</strong>
+                            <ul>
+                                <li>Absence Monitoring: Monitoring and recording sickess corporately</li>
+                                <li>Tell Us Once: Allow Registrar's to register a death with a customer and inform all the relevant areas of the Council.</li>
+                                <li>Windows 7 Gadget: For displaying ICT Service messages regardless of whether they are connected via VPN or not.</li>
+                                <li>Maintentance of older systems: General maintenance and improvements for older systems.</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="position">
+            <div class="company">
+                Tameside Council
+            </div>
+            <div class="roles">
+                <div class="role">
+                    <div class="role-title">
+                        Webmaster
+                        <div class="time-in-role">August 2008 - October 2010</div>
+                    </div>
+                    <div class="role-details">
+                        <p>
+                            During my time in this role I was responsible for the design, maintainance, implementation, infrastructure, coding, design,
+                            layout, accessibility and usability of one of the most accomplished local government websites within the UK (Tameside
+                            Council). These responsibilities came in extension to my role and responsibility as a Systems Developer / Analyst and some
+                            of the things achieved in that time are:
+                            <ul>
+                                <li>
+                                    Becoming the team leader:I gained the technical responsibility for staff, ensuring that any issues that arose
+                                    were resolved, carrying out code reviews, mentoring and offering advice to my manager on technical subjects.
+                                </li>
+                                <li>
+                                    Introduced and supported my team's move to ASP.NET Web forms & MVC 1 & 2 from building new projects
+                                    within Classic ASP
+                                </li>
+                                <li>
+                                    Implemented and changed the teams attitude & use of Source Control (from an ill-used VSS solution to
+                                    Subversion).
+                                </li>
+                                <li>Introduced and arranged code reviews.</li>
+                                <li>Involved within the recruitment process as technical judge.</li>
+                                <li>Represented the Council and presented at an NWEGG conference with partners and representatives from other authorities.</li>
+                                <li>Implementation and maintenance of Google Analytics to replace a subscription-based alternative.</li>
+                                <li>Administration of the "Google Mini" search appliance.</li>
+                                <li>Emergency / late night local election web authoring and website maintenance support out-of-hours.</li>
+                                <li>Created and maintained guidelines for Council's social media presences.</li>
+                            </ul>
+                        </p>
+                        <p>
+                            Some projects worked on within my time as Webmaster:
+                            <ul>
+                                <li>
+                                    Mobile Phone system: Imported data directly from 3rd party extracts and enabled staff to mark and pay for
+                                    personal calls on their mobile phone, as well as offering reports to aid with the maintenance of the fleet.
+                                </li>
+                                <li>
+                                    Know Your Numbers: Showed staff their mobile phone usage, printer usage, landline external calls to
+                                    encourage staff to cut costs where possible. Built using ASP.NET MVC 1, JQuery and Google Charts.
+                                </li>
+                                <li>
+                                    The Portal (sign-on service and Extranet): Single sign-on logic (using OpenID and others) that would allow
+                                    staff, councillors and the public to sign into a customised view of Council information.
+                                </li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="role">
+                    <div class="role-title">
+                        Web Programmer / Analyst
+                        <div class="time-in-role">August 2000 - August 2008</div>
+                    </div>
+                    <div class="role-details">
+                        <p>
+                            Throughout the eight years I spent progressing from a Modern Apprentice to a Systems Analyst, I built, designed and
+                            maintained a great number of systems for Tameside Council's public website and Intranet as well as providing support and
+                            aid to my colleagues and co-workers.
+                        </p>
+                        <p>
+                            Over the years I was responsible for gathering requirements, designing systems, mapping & improving business processes,
+                            system & database architecture, coding, designing the user experience, testing, project managing and various other tasks.
+                        </p>
+                        <p>
+                            During the eight years within this role, I was part of a large number of projects both small and large. Examples of some of
+                            the projects:
+                            <ul>
+                                <li>
+                                    Implementing the WAI Accessibility Guidelines: Project manager and technical lead for interpreting and
+                                    implementing the WAI Accessibility guidelines.
+                                </li>
+                                <li>
+                                    HTML & CSS Website redesigns Responsible for the design of the Council website from 2002 until I left in 2010,
+                                    which included 2 full redesigns and 3-4 minor re-jigs. This often involved full design from concept art through to
+                                    building the HTML & CSS implementation.
+                                </li>
+                                <li>
+                                    Creation of the Public Website CMS Project managed & built a replacement for a flat-file system website with a
+                                    custom built CMS, using PHP with a load balanced database over two MySQL boxes.
+                                </li>
+                                <li>
+                                    Creation of an Online Flexi System Around 2002/03, built a client-side system to enable staff to record and
+                                    monitor their flexitime balances via the web, as well as enabling managers to manage and authorise leave
+                                    requests, built using Classic ASP.
+                                </li>
+                                <li>
+                                    Prototyping / Development Form Template To enable the Council to enable all requests for services to be
+                                    completed online, I was involved in creating a template form which would help speed up development of basic
+                                    forms.
+                                </li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>

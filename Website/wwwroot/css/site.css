@@ -540,6 +540,62 @@ body.error .button-blog:hover {
   background-color: #FFFFFF;
   color: #840202;
 }
+#cv {
+  background-color: #9d0202;
+  padding-bottom: 1em;
+}
+#cv header h1 {
+  color: #FFFFFF;
+  font-size: 3em;
+  padding: 0;
+}
+#cv header h2 {
+  color: #FFFFFF;
+  padding: 0;
+}
+#cv section#work-history {
+  margin: 2em;
+  background-color: #FFFFFF;
+}
+#cv section#work-history .position {
+  width: 100%;
+  display: table;
+  border-bottom: 10px solid #9d0202;
+}
+#cv section#work-history .roles {
+  width: 65%;
+  display: table-cell;
+  padding: 1em;
+}
+#cv section#work-history .roles .role-title {
+  color: #9d0202;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+#cv section#work-history .roles .time-in-role {
+  display: inline-block;
+  color: #000000;
+  font-size: 0.8em;
+  padding-left: 1em;
+}
+#cv section#work-history .roles .role-details {
+  line-height: 1.3em;
+}
+#cv section#work-history .roles .role-details p {
+  padding: 0.5em 0;
+}
+#cv section#work-history .roles .role-details ul {
+  margin-left: 2.5em;
+}
+#cv section#work-history .roles .role-details li {
+  padding: 3px;
+}
+#cv section#work-history .company {
+  width: 35%;
+  display: table-cell;
+  padding: 1em;
+}
+
 * {
   padding: 0;
   margin: 0;
