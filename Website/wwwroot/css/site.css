@@ -595,6 +595,22 @@ body.error .button-blog:hover {
   display: table-cell;
   padding: 1em;
 }
+#cv .skills {
+  list-style: none;
+  padding: 0.6em 0;
+}
+#cv .skills li {
+  background-color: #9d0202;
+  display: inline-block;
+  padding: 0.3em 0.7em;
+  margin: 0.15em 0;
+  color: #FFFFFF;
+  text-align: left;
+  font-size: 0.9em;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
 
 * {
   padding: 0;

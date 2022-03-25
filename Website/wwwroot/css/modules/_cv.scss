@@ -51,12 +51,15 @@
 
             .role-details {
                 line-height: 1.3em;
+
                 p {
                     padding: 0.5em 0;
                 }
+
                 ul {
                     margin-left: 2.5em;
                 }
+
                 li {
                     padding: 3px;
                 }
@@ -68,6 +71,22 @@
             display: table-cell;
             //background-color: aqua;
             padding: 1em;
+        }
+    }
+
+    .skills {
+        list-style: none;
+        padding: 0.6em 0;
+
+        li {
+            background-color: $primary-color;
+            display: inline-block;
+            padding: 0.3em 0.7em;
+            margin: 0.15em 0;
+            color: $primary-color-compliment;
+            text-align: left;
+            font-size: 0.9em;
+            @include rounded(10px);
         }
     }
 }
