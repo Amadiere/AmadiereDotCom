@@ -1,4 +1,5 @@
-﻿.button, body.error .button-blog, body.homepage .button-blog, body.homepage .button-aboutme {
+﻿@charset "UTF-8";
+.button, body.error .button-blog, body.homepage .button-blog, body.homepage .button-aboutme {
   text-decoration: none;
   display: inline-block;
   padding: 0.2em 0.5em;
@@ -540,9 +541,61 @@ body.error .button-blog:hover {
   background-color: #FFFFFF;
   color: #840202;
 }
+blockquote {
+  margin: 0.25em 0;
+  padding: 0.35em 40px;
+  line-height: 1.45;
+  position: relative;
+  color: #f2f2f2;
+}
+
+blockquote:before {
+  display: block;
+  padding-left: 10px;
+  content: "“";
+  font-size: 6em;
+  position: absolute;
+  left: -20px;
+  top: -20px;
+}
+
+blockquote:after {
+  position: absolute;
+  float: right;
+  font-size: 6em;
+  line-height: 1;
+  right: 0;
+  bottom: -0.5em;
+  content: "”";
+}
+
 #cv {
   background-color: #9d0202;
   padding-bottom: 1em;
+}
+#cv ul.links {
+  list-style: none;
+  color: #FFFFFF;
+}
+#cv ul.links li {
+  display: inline-block;
+  font-size: 0.9em;
+  padding-top: 1em;
+  padding-right: 1em;
+}
+#cv ul.links li a {
+  color: #FFFFFF;
+  font-weight: normal;
+  text-decoration: none;
+}
+#cv ul.links li svg {
+  width: 30px;
+  font-size: 1.1em;
+  vertical-align: middle;
+  padding-bottom: 3px;
+}
+#cv header {
+  padding-bottom: 0;
 }
 #cv header h1 {
   color: #FFFFFF;

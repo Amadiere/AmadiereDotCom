@@ -2,9 +2,63 @@
 /// <reference path="../partials/_buttons.scss" />
 /// <reference path="../partials/_boxes.scss" />
 
+blockquote {
+    
+    margin: 0.25em 0;
+    padding: 0.35em 40px;
+    line-height: 1.45;
+    position: relative;
+    color: darken($primary-color-compliment, 5);
+}
+
+blockquote:before {
+    display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 6em;
+    position: absolute;
+    left: -20px;
+    top: -20px;
+}
+
+blockquote:after {
+    position: absolute;
+    float: right;
+    font-size: 6em;
+    line-height: 1;
+    right: 0;
+    bottom: -0.5em;
+    content: "\201D";
+}
+
 #cv {
     background-color: $primary-color;
     padding-bottom: 1em;
+
+    ul.links {
+        list-style: none;
+        color: $primary-color-compliment;
+
+        li {
+            display: inline-block;
+            font-size: 0.9em;
+            padding-top: 1em;
+            padding-right: 1em;
+
+            a {
+                color: $primary-color-compliment;
+                font-weight: normal;
+                text-decoration: none;
+            }
+
+            svg {
+                width: 30px;
+                font-size: 1.1em;
+                vertical-align: middle;
+                padding-bottom: 3px;
+            }
+        }
+    }
 
     header {
         h1 {
@@ -17,6 +71,8 @@
             color: $primary-color-compliment;
             padding: 0;
         }
+
+        padding-bottom: 0;
     }
 
     section#work-history {
