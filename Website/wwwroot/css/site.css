@@ -300,6 +300,7 @@ body.aboutme .secondary-section {
 }
 body.aboutme .language-list {
   padding: 0.5em;
+  font-size: 0.85em;
 }
 body.aboutme .language-list span {
   display: inline-block;
@@ -543,7 +544,7 @@ body.error .button-blog:hover {
 }
 blockquote {
   margin: 0.25em 0;
-  padding: 0.35em 40px;
+  padding: 0.35em 30px;
   line-height: 1.45;
   position: relative;
   color: #f2f2f2;
@@ -576,11 +577,12 @@ blockquote:after {
 #cv ul.links {
   list-style: none;
   color: #FFFFFF;
+  padding: 1em 0;
 }
 #cv ul.links li {
   display: inline-block;
   font-size: 0.9em;
-  padding-top: 1em;
+  padding-top: 5px;
   padding-right: 1em;
 }
 #cv ul.links li a {
@@ -595,6 +597,9 @@ blockquote:after {
   padding-bottom: 3px;
 }
 #cv header {
+  text-align: center;
+  font-size: 1.2em;
+  padding: 3em;
   padding-bottom: 0;
 }
 #cv header h1 {
@@ -605,6 +610,12 @@ blockquote:after {
 #cv header h2 {
   color: #FFFFFF;
   padding: 0;
+  font-size: 1em;
+}
+@media only screen and (max-width: 1000px) {
+  #cv header {
+    padding: 1em;
+  }
 }
 #cv section#work-history {
   margin: 2em;
@@ -612,8 +623,12 @@ blockquote:after {
 }
 #cv section#work-history .position {
   width: 100%;
-  display: table;
   border-bottom: 10px solid #9d0202;
+}
+@media only screen and (min-width: 999px) {
+  #cv section#work-history .position {
+    display: table;
+  }
 }
 #cv section#work-history .position .apology {
   font-size: 1.2em;
@@ -654,9 +669,16 @@ blockquote:after {
   display: table-cell;
   padding: 1em;
 }
+@media only screen and (max-width: 1000px) {
+  #cv section#work-history .company {
+    width: 100%;
+    display: block;
+  }
+}
 #cv .skills {
   list-style: none;
   padding: 0.6em 0;
+  width: 94%;
 }
 #cv .skills li {
   background-color: #9d0202;
@@ -673,12 +695,12 @@ blockquote:after {
 #cv .education h3 {
   color: #9d0202;
   text-align: center;
-  font-size: 2em;
+  font-size: 1.7em;
   padding: 0.2em;
 }
 #cv .education dl {
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1.1em;
   margin-top: 0.5em;
 }
 #cv .education dl dd {
