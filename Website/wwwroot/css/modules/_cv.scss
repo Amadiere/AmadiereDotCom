@@ -33,6 +33,12 @@ blockquote:after {
 
 #cv {
     background-color: $primary-color;
+
+    @media only screen and (min-width: 1000px) {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
     padding-bottom: 1em;
 
     ul.links {
@@ -162,7 +168,7 @@ blockquote:after {
         list-style: none;
         padding: 0.6em 0;
         width: 94%;
-                
+
         li {
             background-color: $primary-color;
             display: inline-block;
